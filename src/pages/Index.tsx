@@ -113,7 +113,7 @@ const Services = () => (
 );
 
 const Contact = () => (
-  <section id="contact" className="py-28 md:py-36 animated-bg relative overflow-hidden">
+  <section id="contact" className="py-36 md:py-48 animated-bg relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-20" />
     <div className="container mx-auto px-4 md:px-6 max-w-xl text-center relative z-10">
       <div className="space-y-4 mb-14">
