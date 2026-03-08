@@ -54,8 +54,8 @@ const Hero = () => (
         </a>
       </div>
       <div className="flex justify-center">
-        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-card border-2 border-border flex items-center justify-center text-muted-foreground text-sm">
-          Your Photo Here
+        <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-card border-2 border-border overflow-hidden">
+          <img src={profileImg} alt="Ibrahim Mahmud" className="w-full h-full object-cover" />
         </div>
       </div>
     </div>
