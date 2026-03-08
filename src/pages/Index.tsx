@@ -47,20 +47,20 @@ const Hero = () => (
     <div className="absolute top-20 left-10 w-96 h-96 rounded-full blur-[120px] opacity-[0.07]" style={{ background: 'hsl(145 65% 49%)' }} />
     <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-[100px] opacity-[0.05]" style={{ background: 'hsl(200 80% 50%)' }} />
 
-    <div className="container mx-auto px-4 md:px-6 py-28 md:py-40 relative z-10">
-      <div className="grid md:grid-cols-2 gap-16 lg:gap-20 items-center">
-        <div className="space-y-10">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-secondary/60 border border-border/50 rounded-full px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+    <div className="container mx-auto px-4 md:px-6 py-36 md:py-52 relative z-10">
+      <div className="grid md:grid-cols-2 gap-20 lg:gap-28 items-center">
+        <div className="space-y-12">
+          <div className="space-y-7">
+            <div className="inline-flex items-center gap-2 bg-secondary/60 border border-border/50 rounded-full px-5 py-2 text-xs font-medium text-muted-foreground backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Professional Recovery Service
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-[1.05] tracking-tight">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-foreground leading-[1.02] tracking-tighter">
               Social Media<br />
               <span className="neon-text">Account Recovery</span>
             </h1>
           </div>
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-lg">
+          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-md">
             Professional help to recover disabled, hacked, locked or restricted Facebook and Instagram accounts.
           </p>
           <div className="flex flex-wrap gap-4">
