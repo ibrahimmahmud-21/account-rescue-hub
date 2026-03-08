@@ -1,4 +1,5 @@
 import { MessageCircle } from "lucide-react";
+import profileImg from "@/assets/profile.jpg";
 
 const WHATSAPP_URL = "https://wa.me/8801922071552";
 
