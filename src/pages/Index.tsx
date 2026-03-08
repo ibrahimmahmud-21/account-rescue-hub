@@ -151,6 +151,72 @@ const Process = () => (
   </section>
 );
 
+const whyChoose = [
+  { title: "Fast Service", description: "Quick and efficient help for account recovery issues.", icon: Zap },
+  { title: "Secure Process", description: "Your account information stays private and protected.", icon: Shield },
+  { title: "Focused Expertise", description: "Specialized in Facebook and Instagram account issues.", icon: Target },
+];
+
+const WhyChoose = () => (
+  <section className="py-36 md:py-48 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
+    <div className="grid-bg absolute inset-0 opacity-15" />
+    <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="text-center mb-20 space-y-4">
+        <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Why Us</p>
+        <h2 className="section-title">Why Choose My Service</h2>
+      </div>
+      <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+        {whyChoose.map(({ title, description, icon: Icon }) => (
+          <div key={title} className="cyber-card group text-left">
+            <div className="mb-5">
+              <div className="icon-glow w-14 h-14">
+                <Icon size={24} className="text-primary" />
+              </div>
+            </div>
+            <h3 className="text-lg font-bold text-foreground mb-2 flex items-center gap-2">
+              <span className="text-primary">✔</span> {title}
+            </h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+const faqs = [
+  { question: "How long does the recovery process take?", answer: "The time depends on the type of issue.", icon: Clock },
+  { question: "Is my account information safe?", answer: "Yes, your information is kept private and secure.", icon: LockKeyhole },
+  { question: "How do I contact you?", answer: "You can contact directly through WhatsApp.", icon: HelpCircle },
+];
+
+const FAQ = () => (
+  <section className="py-36 md:py-48 relative overflow-hidden" style={{ background: 'hsl(228 55% 7%)' }}>
+    <div className="grid-bg absolute inset-0 opacity-25" />
+    <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="text-center mb-20 space-y-4">
+        <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Got Questions?</p>
+        <h2 className="section-title">Frequently Asked Questions</h2>
+      </div>
+      <div className="max-w-3xl mx-auto space-y-5">
+        {faqs.map(({ question, answer, icon: Icon }) => (
+          <div key={question} className="cyber-card group text-left !rounded-xl !p-0">
+            <div className="flex items-start gap-5 p-6">
+              <div className="icon-glow w-12 h-12 shrink-0 mt-0.5">
+                <Icon size={20} className="text-primary" />
+              </div>
+              <div>
+                <h3 className="text-base font-bold text-foreground mb-1.5">{question}</h3>
+                <p className="text-muted-foreground text-sm leading-relaxed">{answer}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Contact = () => (
   <section id="contact" className="py-36 md:py-48 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
     <div className="grid-bg absolute inset-0 opacity-15" />
