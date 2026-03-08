@@ -124,7 +124,7 @@ const Contact = () => (
           { label: "Name", value: "Ibrahim Mahmud" },
           { label: "WhatsApp", value: "+8801922071552" },
           { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com" },
-          { label: "Facebook", value: "Facebook Profile", href: "https://www.facebook.com/share/1angi9HKK8/" },
+          { label: "Facebook Page", value: "Facebook Page", href: "https://www.facebook.com/share/1angi9HKK8/" },
         ].map(({ label, value, href }) => (
           <div key={label} className="flex items-center gap-4 group">
             <ChevronRight size={14} className="text-primary/50 group-hover:text-primary transition-colors" />
