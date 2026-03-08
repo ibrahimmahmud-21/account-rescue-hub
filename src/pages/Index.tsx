@@ -96,12 +96,12 @@ const Services = () => (
         <h2 className="section-title">My Services</h2>
         <p className="text-muted-foreground text-lg max-w-md mx-auto">End-to-end solutions for all your social media recovery needs</p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
         {services.map(({ name, icon: Icon }) => (
           <div key={name} className="cyber-card group">
-            <div className="mb-5 flex justify-center">
-              <div className="icon-glow">
-                <Icon size={22} className="text-primary" />
+            <div className="mb-6 flex justify-center">
+              <div className="icon-glow w-14 h-14">
+                <Icon size={26} className="text-primary" />
               </div>
             </div>
             <p className="text-sm font-semibold text-foreground/90 leading-snug">{name}</p>
