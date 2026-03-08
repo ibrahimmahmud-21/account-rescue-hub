@@ -213,6 +213,7 @@ const Index = () => (
     <Navbar />
     <Hero />
     <Services />
+    <Process />
     <Contact />
     <Footer />
     <FloatingWhatsApp />
