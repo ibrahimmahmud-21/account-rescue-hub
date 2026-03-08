@@ -130,8 +130,8 @@
   }
   .cyber-card:hover {
     border-color: hsl(145 65% 49% / 0.5);
-    box-shadow: 0 0 30px hsl(145 65% 49% / 0.08), 0 8px 32px hsl(0 0% 0% / 0.4);
-    @apply -translate-y-2;
+    box-shadow: 0 0 35px hsl(145 65% 49% / 0.1), 0 12px 40px hsl(0 0% 0% / 0.5);
+    @apply -translate-y-3;
   }
   .cyber-card:hover::before {
     @apply opacity-100;
