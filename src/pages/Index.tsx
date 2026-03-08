@@ -74,8 +74,9 @@ const Hero = () => (
         </div>
 
         <div className="flex justify-center relative">
-          <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full blur-[80px] opacity-20" style={{ background: 'hsl(145 65% 49%)' }} />
-          <div className="profile-neon w-64 h-64 md:w-80 md:h-80 relative z-10">
+          <div className="absolute w-[28rem] h-[28rem] md:w-[36rem] md:h-[36rem] rounded-full blur-[140px] opacity-25" style={{ background: 'hsl(145 65% 49%)' }} />
+          <div className="absolute w-72 h-72 rounded-full blur-[80px] opacity-15" style={{ background: 'hsl(200 80% 50%)' }} />
+          <div className="profile-neon w-72 h-72 md:w-[22rem] md:h-[22rem] relative z-10">
             <img src={profileImg} alt="Ibrahim Mahmud" />
           </div>
         </div>
