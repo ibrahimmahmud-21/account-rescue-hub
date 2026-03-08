@@ -113,9 +113,9 @@ const Services = () => (
 );
 
 const steps = [
-  { number: "01", title: "Contact on WhatsApp", description: "Explain your account issue and send details.", icon: MessageCircle },
-  { number: "02", title: "Issue Analysis", description: "We review the problem and guide the next steps.", icon: Search },
-  { number: "03", title: "Recovery Process", description: "Work begins to recover or fix the account issue.", icon: Wrench },
+  { number: "01", title: "Explain Your Issue", description: "Describe your account problem clearly.", icon: FileText },
+  { number: "02", title: "Issue Analysis", description: "We review the problem and check possible solutions.", icon: Search },
+  { number: "03", title: "Recovery Process", description: "We start working to recover or fix the account issue.", icon: Wrench },
 ];
 
 const Process = () => (
