@@ -85,9 +85,13 @@ const Hero = () => (
   </section>
 );
 
+const SectionDivider = () => (
+  <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(145 65% 49% / 0.15), transparent)' }} />
+);
+
 const Services = () => (
-  <section id="services" className="py-36 md:py-48 relative overflow-hidden">
-    <div className="grid-bg absolute inset-0 opacity-20" />
+  <section id="services" className="py-36 md:py-48 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
+    <div className="grid-bg absolute inset-0 opacity-15" />
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] opacity-[0.04]" style={{ background: 'hsl(145 65% 49%)' }} />
 
     <div className="container mx-auto px-4 md:px-6 relative z-10">
