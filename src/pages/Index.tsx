@@ -123,9 +123,9 @@ const steps = [
 ];
 
 const Process = () => (
-  <section className="py-36 md:py-48 relative overflow-hidden">
-    <div className="grid-bg absolute inset-0 opacity-20" />
-    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[150px] opacity-[0.04]" style={{ background: 'hsl(145 65% 49%)' }} />
+  <section className="py-36 md:py-48 relative overflow-hidden" style={{ background: 'hsl(228 55% 7%)' }}>
+    <div className="grid-bg absolute inset-0 opacity-25" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[150px] opacity-[0.06]" style={{ background: 'hsl(145 65% 49%)' }} />
 
     <div className="container mx-auto px-4 md:px-6 relative z-10">
       <div className="text-center mb-20 space-y-4">
