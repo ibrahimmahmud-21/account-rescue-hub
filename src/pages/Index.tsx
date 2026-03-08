@@ -287,6 +287,10 @@ const Index = () => (
     <SectionDivider />
     <Process />
     <SectionDivider />
+    <WhyChoose />
+    <SectionDivider />
+    <FAQ />
+    <SectionDivider />
     <Contact />
     <Footer />
     <FloatingWhatsApp />
