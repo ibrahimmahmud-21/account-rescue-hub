@@ -86,7 +86,7 @@ const Hero = () => (
 );
 
 const Services = () => (
-  <section id="services" className="py-28 md:py-36 relative overflow-hidden">
+  <section id="services" className="py-36 md:py-48 relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-20" />
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] opacity-[0.04]" style={{ background: 'hsl(145 65% 49%)' }} />
 
