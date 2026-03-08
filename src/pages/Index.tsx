@@ -1,4 +1,4 @@
-import { MessageCircle, ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, ChevronRight } from "lucide-react";
+import { MessageCircle, ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, ChevronRight, User, Mail, Facebook } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
 const WA = "https://wa.me/8801922071552";
@@ -119,21 +119,28 @@ const Contact = () => (
         <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Get In Touch</p>
         <h2 className="section-title">Contact Me</h2>
       </div>
-      <div className="contact-card space-y-6 text-left mb-12">
+      <div className="contact-card space-y-0 text-left mb-12">
         {[
-          { label: "Name", value: "Ibrahim Mahmud" },
-          { label: "WhatsApp", value: "+8801922071552" },
-          { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com" },
-          { label: "Facebook Page", value: "Facebook Page", href: "https://www.facebook.com/share/1angi9HKK8/" },
-        ].map(({ label, value, href }) => (
-          <div key={label} className="flex items-center gap-4 group">
-            <ChevronRight size={14} className="text-primary/50 group-hover:text-primary transition-colors" />
-            <span className="text-muted-foreground text-sm w-24 shrink-0">{label}</span>
-            {href ? (
-              <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-medium">{value}</a>
-            ) : (
-              <span className="text-foreground text-sm font-medium">{value}</span>
-            )}
+          { label: "Name", value: "Ibrahim Mahmud", icon: User },
+          { label: "WhatsApp", value: "+8801922071552", icon: MessageCircle },
+          { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
+          { label: "Facebook Page", value: "Facebook Page", href: "https://www.facebook.com/share/1angi9HKK8/", icon: Facebook },
+        ].map(({ label, value, href, icon: Icon }, i, arr) => (
+          <div key={label}>
+            <div className="flex items-center gap-5 py-5 group">
+              <div className="icon-glow w-11 h-11 shrink-0">
+                <Icon size={18} className="text-primary" />
+              </div>
+              <div className="flex flex-col gap-0.5">
+                <span className="text-muted-foreground text-xs uppercase tracking-wider">{label}</span>
+                {href ? (
+                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-sm font-semibold">{value}</a>
+                ) : (
+                  <span className="text-foreground text-sm font-semibold">{value}</span>
+                )}
+              </div>
+            </div>
+            {i < arr.length - 1 && <div className="h-px bg-border/40" />}
           </div>
         ))}
       </div>
