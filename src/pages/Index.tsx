@@ -152,8 +152,8 @@ const Process = () => (
 );
 
 const Contact = () => (
-  <section id="contact" className="py-36 md:py-48 animated-bg relative overflow-hidden">
-    <div className="grid-bg absolute inset-0 opacity-20" />
+  <section id="contact" className="py-36 md:py-48 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
+    <div className="grid-bg absolute inset-0 opacity-15" />
     <div className="container mx-auto px-4 md:px-6 max-w-xl text-center relative z-10">
       <div className="space-y-4 mb-14">
         <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Get In Touch</p>
