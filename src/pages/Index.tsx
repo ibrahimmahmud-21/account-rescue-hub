@@ -47,20 +47,20 @@ const Hero = () => (
     <div className="absolute top-20 left-10 w-96 h-96 rounded-full blur-[120px] opacity-[0.07]" style={{ background: 'hsl(145 65% 49%)' }} />
     <div className="absolute bottom-20 right-10 w-80 h-80 rounded-full blur-[100px] opacity-[0.05]" style={{ background: 'hsl(200 80% 50%)' }} />
 
-    <div className="container mx-auto px-4 md:px-6 py-28 md:py-40 relative z-10">
-      <div className="grid md:grid-cols-2 gap-16 lg:gap-20 items-center">
-        <div className="space-y-10">
-          <div className="space-y-6">
-            <div className="inline-flex items-center gap-2 bg-secondary/60 border border-border/50 rounded-full px-4 py-1.5 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+    <div className="container mx-auto px-4 md:px-6 py-36 md:py-52 relative z-10">
+      <div className="grid md:grid-cols-2 gap-20 lg:gap-28 items-center">
+        <div className="space-y-12">
+          <div className="space-y-7">
+            <div className="inline-flex items-center gap-2 bg-secondary/60 border border-border/50 rounded-full px-5 py-2 text-xs font-medium text-muted-foreground backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               Professional Recovery Service
             </div>
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-foreground leading-[1.05] tracking-tight">
+            <h1 className="text-6xl md:text-7xl lg:text-8xl font-black text-foreground leading-[1.02] tracking-tighter">
               Social Media<br />
               <span className="neon-text">Account Recovery</span>
             </h1>
           </div>
-          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-lg">
+          <p className="text-muted-foreground text-lg md:text-xl leading-relaxed max-w-md">
             Professional help to recover disabled, hacked, locked or restricted Facebook and Instagram accounts.
           </p>
           <div className="flex flex-wrap gap-4">
@@ -74,8 +74,9 @@ const Hero = () => (
         </div>
 
         <div className="flex justify-center relative">
-          <div className="absolute w-72 h-72 md:w-96 md:h-96 rounded-full blur-[80px] opacity-20" style={{ background: 'hsl(145 65% 49%)' }} />
-          <div className="profile-neon w-64 h-64 md:w-80 md:h-80 relative z-10">
+          <div className="absolute w-[28rem] h-[28rem] md:w-[36rem] md:h-[36rem] rounded-full blur-[140px] opacity-25" style={{ background: 'hsl(145 65% 49%)' }} />
+          <div className="absolute w-72 h-72 rounded-full blur-[80px] opacity-15" style={{ background: 'hsl(200 80% 50%)' }} />
+          <div className="profile-neon w-72 h-72 md:w-[22rem] md:h-[22rem] relative z-10">
             <img src={profileImg} alt="Ibrahim Mahmud" />
           </div>
         </div>
@@ -85,7 +86,7 @@ const Hero = () => (
 );
 
 const Services = () => (
-  <section id="services" className="py-28 md:py-36 relative overflow-hidden">
+  <section id="services" className="py-36 md:py-48 relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-20" />
     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full blur-[150px] opacity-[0.04]" style={{ background: 'hsl(145 65% 49%)' }} />
 
@@ -95,12 +96,12 @@ const Services = () => (
         <h2 className="section-title">My Services</h2>
         <p className="text-muted-foreground text-lg max-w-md mx-auto">End-to-end solutions for all your social media recovery needs</p>
       </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-5">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5 md:gap-6">
         {services.map(({ name, icon: Icon }) => (
           <div key={name} className="cyber-card group">
-            <div className="mb-5 flex justify-center">
-              <div className="icon-glow">
-                <Icon size={22} className="text-primary" />
+            <div className="mb-6 flex justify-center">
+              <div className="icon-glow w-14 h-14">
+                <Icon size={26} className="text-primary" />
               </div>
             </div>
             <p className="text-sm font-semibold text-foreground/90 leading-snug">{name}</p>
@@ -112,7 +113,7 @@ const Services = () => (
 );
 
 const Contact = () => (
-  <section id="contact" className="py-28 md:py-36 animated-bg relative overflow-hidden">
+  <section id="contact" className="py-36 md:py-48 animated-bg relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-20" />
     <div className="container mx-auto px-4 md:px-6 max-w-xl text-center relative z-10">
       <div className="space-y-4 mb-14">
