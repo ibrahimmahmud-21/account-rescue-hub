@@ -1,4 +1,4 @@
-import { MessageCircle, ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, ChevronRight, User, Mail, Facebook } from "lucide-react";
+import { MessageCircle, ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, ChevronRight, User, Mail, Facebook, Search, Wrench } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
 const WA = "https://wa.me/8801922071552";
@@ -112,6 +112,41 @@ const Services = () => (
   </section>
 );
 
+const steps = [
+  { number: "01", title: "Contact on WhatsApp", description: "Explain your account issue and send details.", icon: MessageCircle },
+  { number: "02", title: "Issue Analysis", description: "We review the problem and guide the next steps.", icon: Search },
+  { number: "03", title: "Recovery Process", description: "Work begins to recover or fix the account issue.", icon: Wrench },
+];
+
+const Process = () => (
+  <section className="py-36 md:py-48 relative overflow-hidden">
+    <div className="grid-bg absolute inset-0 opacity-20" />
+    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full blur-[150px] opacity-[0.04]" style={{ background: 'hsl(145 65% 49%)' }} />
+
+    <div className="container mx-auto px-4 md:px-6 relative z-10">
+      <div className="text-center mb-20 space-y-4">
+        <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Simple & Fast</p>
+        <h2 className="section-title">How the Process Works</h2>
+        <p className="text-muted-foreground text-lg max-w-md mx-auto">Three simple steps to get your account back</p>
+      </div>
+      <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+        {steps.map(({ number, title, description, icon: Icon }) => (
+          <div key={number} className="cyber-card group text-left">
+            <div className="flex items-center gap-4 mb-5">
+              <div className="icon-glow w-14 h-14 shrink-0">
+                <Icon size={24} className="text-primary" />
+              </div>
+              <span className="text-3xl font-black text-primary/20">{number}</span>
+            </div>
+            <h3 className="text-lg font-bold text-foreground mb-2">{title}</h3>
+            <p className="text-muted-foreground text-sm leading-relaxed">{description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
 const Contact = () => (
   <section id="contact" className="py-36 md:py-48 animated-bg relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-20" />
@@ -178,6 +213,7 @@ const Index = () => (
     <Navbar />
     <Hero />
     <Services />
+    <Process />
     <Contact />
     <Footer />
     <FloatingWhatsApp />
