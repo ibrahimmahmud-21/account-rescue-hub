@@ -283,7 +283,7 @@ const Index = () => (
     <SectionDivider />
     <Contact />
     <Footer />
-    <FloatingWhatsApp />
+    
   </>
 );
 
