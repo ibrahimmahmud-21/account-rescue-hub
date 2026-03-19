@@ -1,5 +1,8 @@
+import { useState, useEffect } from "react";
 import { ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, User, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle } from "lucide-react";
-import profileImg from "@/assets/profile.jpg";
+import slider1 from "@/assets/slider1.jpg";
+import slider2 from "@/assets/slider2.jpg";
+import slider3 from "@/assets/slider3.jpg";
 
 const FB = "https://www.facebook.com/share/1EDcLHbrgn/";
 
@@ -40,7 +43,19 @@ const Navbar = () => (
   </nav>
 );
 
-const Hero = () => (
+const sliderImages = [slider1, slider2, slider3];
+
+const Hero = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % sliderImages.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
   <section id="home" className="animated-bg relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-40" />
     {/* Ambient orbs */}
@@ -77,13 +92,22 @@ const Hero = () => (
           <div className="absolute w-[28rem] h-[28rem] md:w-[36rem] md:h-[36rem] rounded-full blur-[140px] opacity-25" style={{ background: 'hsl(145 65% 49%)' }} />
           <div className="absolute w-72 h-72 rounded-full blur-[80px] opacity-15" style={{ background: 'hsl(200 80% 50%)' }} />
           <div className="profile-neon w-72 h-72 md:w-[22rem] md:h-[22rem] relative z-10">
-            <img src={profileImg} alt="Ibrahim Mahmud" />
+            {sliderImages.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Slide ${i + 1}`}
+                className="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-700"
+                style={{ opacity: i === current ? 1 : 0 }}
+              />
+            ))}
           </div>
         </div>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 const SectionDivider = () => (
   <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(145 65% 49% / 0.15), transparent)' }} />
