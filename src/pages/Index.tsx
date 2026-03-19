@@ -1,7 +1,7 @@
-import { MessageCircle, ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, ChevronRight, User, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle } from "lucide-react";
+import { ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, User, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
-const WA = "https://wa.me/8801922071552";
+const FB = "https://www.facebook.com/share/1EDcLHbrgn/";
 
 const services = [
   { name: "Disabled Account Back", icon: Lock },
@@ -32,8 +32,8 @@ const Navbar = () => (
         <a href="#home" className="nav-link hidden sm:block">Home</a>
         <a href="#services" className="nav-link hidden sm:block">My Services</a>
         <a href="#contact" className="nav-link hidden sm:block">Contact</a>
-        <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-neon !text-sm !py-2.5 !px-5">
-          <MessageCircle size={16} /> WhatsApp
+        <a href="#contact" className="btn-neon !text-sm !py-2.5 !px-5">
+          <Mail size={16} /> Contact Me
         </a>
       </div>
     </div>
@@ -64,8 +64,8 @@ const Hero = () => (
             Professional help to recover disabled, hacked, locked or restricted Facebook and Instagram accounts.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-neon">
-              <MessageCircle size={20} /> Chat on WhatsApp
+            <a href="#contact" className="btn-neon">
+              <Mail size={20} /> Contact Me
             </a>
             <a href="#services" className="btn-ghost-neon">
               <ArrowDown size={20} /> View My Services
@@ -225,12 +225,11 @@ const Contact = () => (
         <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Get In Touch</p>
         <h2 className="section-title">Contact Me</h2>
       </div>
-      <div className="contact-card space-y-0 text-left mb-12">
+      <div className="contact-card space-y-0 text-left">
         {[
           { label: "Name", value: "Ibrahim Mahmud", icon: User },
-          { label: "WhatsApp", value: "+8801922071552", icon: MessageCircle },
           { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
-          { label: "Facebook Page", value: "Facebook Page", href: "https://www.facebook.com/share/1angi9HKK8/", icon: Facebook },
+          { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
         ].map(({ label, value, href, icon: Icon }, i, arr) => (
           <div key={label}>
             <div className="flex items-center gap-5 py-5 group">
@@ -250,9 +249,6 @@ const Contact = () => (
           </div>
         ))}
       </div>
-      <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-neon text-base">
-        <MessageCircle size={22} /> Chat on WhatsApp
-      </a>
     </div>
   </section>
 );
@@ -263,20 +259,14 @@ const Footer = () => (
       <p className="text-foreground font-bold text-lg tracking-tight"><span className="neon-text">⟐</span> Ibrahim Mahmud</p>
       <p className="text-muted-foreground text-sm">Social Media Account Recovery Service</p>
       <div className="flex justify-center gap-8 text-sm">
-        <a href={WA} target="_blank" rel="noopener noreferrer" className="footer-link">WhatsApp</a>
         <a href="mailto:ibmm923@gmail.com" className="footer-link">Email</a>
-        <a href="https://www.facebook.com/share/1angi9HKK8/" target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
+        <a href={FB} target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
       </div>
       <p className="text-muted-foreground/40 text-xs pt-3">© 2026 Ibrahim Mahmud</p>
     </div>
   </footer>
 );
 
-const FloatingWhatsApp = () => (
-  <a href={WA} target="_blank" rel="noopener noreferrer" className="floating-wa" aria-label="Chat on WhatsApp">
-    <MessageCircle size={28} />
-  </a>
-);
 
 const Index = () => (
   <>
@@ -293,7 +283,7 @@ const Index = () => (
     <SectionDivider />
     <Contact />
     <Footer />
-    <FloatingWhatsApp />
+    
   </>
 );
 
