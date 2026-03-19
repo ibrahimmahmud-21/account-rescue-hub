@@ -92,7 +92,15 @@ const Hero = () => {
           <div className="absolute w-[28rem] h-[28rem] md:w-[36rem] md:h-[36rem] rounded-full blur-[140px] opacity-25" style={{ background: 'hsl(145 65% 49%)' }} />
           <div className="absolute w-72 h-72 rounded-full blur-[80px] opacity-15" style={{ background: 'hsl(200 80% 50%)' }} />
           <div className="profile-neon w-72 h-72 md:w-[22rem] md:h-[22rem] relative z-10">
-            <img src={profileImg} alt="Ibrahim Mahmud" />
+            {sliderImages.map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt={`Slide ${i + 1}`}
+                className="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-700"
+                style={{ opacity: i === current ? 1 : 0 }}
+              />
+            ))}
           </div>
         </div>
       </div>
