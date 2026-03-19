@@ -259,9 +259,8 @@ const Footer = () => (
       <p className="text-foreground font-bold text-lg tracking-tight"><span className="neon-text">⟐</span> Ibrahim Mahmud</p>
       <p className="text-muted-foreground text-sm">Social Media Account Recovery Service</p>
       <div className="flex justify-center gap-8 text-sm">
-        <a href={WA} target="_blank" rel="noopener noreferrer" className="footer-link">WhatsApp</a>
         <a href="mailto:ibmm923@gmail.com" className="footer-link">Email</a>
-        <a href="https://www.facebook.com/share/1angi9HKK8/" target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
+        <a href={FB} target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
       </div>
       <p className="text-muted-foreground/40 text-xs pt-3">© 2026 Ibrahim Mahmud</p>
     </div>
