@@ -106,7 +106,8 @@ const Hero = () => {
       </div>
     </div>
   </section>
-);
+  );
+};
 
 const SectionDivider = () => (
   <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(145 65% 49% / 0.15), transparent)' }} />
