@@ -1,7 +1,7 @@
 import { MessageCircle, ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, ChevronRight, User, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle } from "lucide-react";
 import profileImg from "@/assets/profile.jpg";
 
-const WA = "https://wa.me/8801922071552";
+const FB = "https://www.facebook.com/share/1EDcLHbrgn/";
 
 const services = [
   { name: "Disabled Account Back", icon: Lock },
