@@ -32,8 +32,8 @@ const Navbar = () => (
         <a href="#home" className="nav-link hidden sm:block">Home</a>
         <a href="#services" className="nav-link hidden sm:block">My Services</a>
         <a href="#contact" className="nav-link hidden sm:block">Contact</a>
-        <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-neon !text-sm !py-2.5 !px-5">
-          <MessageCircle size={16} /> WhatsApp
+        <a href="#contact" className="btn-neon !text-sm !py-2.5 !px-5">
+          <Mail size={16} /> Contact Me
         </a>
       </div>
     </div>
