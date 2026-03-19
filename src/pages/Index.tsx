@@ -267,11 +267,6 @@ const Footer = () => (
   </footer>
 );
 
-const FloatingWhatsApp = () => (
-  <a href={WA} target="_blank" rel="noopener noreferrer" className="floating-wa" aria-label="Chat on WhatsApp">
-    <MessageCircle size={28} />
-  </a>
-);
 
 const Index = () => (
   <>
