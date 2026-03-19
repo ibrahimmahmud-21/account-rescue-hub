@@ -64,8 +64,8 @@ const Hero = () => (
             Professional help to recover disabled, hacked, locked or restricted Facebook and Instagram accounts.
           </p>
           <div className="flex flex-wrap gap-4">
-            <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-neon">
-              <MessageCircle size={20} /> Chat on WhatsApp
+            <a href="#contact" className="btn-neon">
+              <Mail size={20} /> Contact Me
             </a>
             <a href="#services" className="btn-ghost-neon">
               <ArrowDown size={20} /> View My Services
