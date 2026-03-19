@@ -225,12 +225,11 @@ const Contact = () => (
         <p className="text-primary font-semibold text-sm uppercase tracking-[0.2em]">Get In Touch</p>
         <h2 className="section-title">Contact Me</h2>
       </div>
-      <div className="contact-card space-y-0 text-left mb-12">
+      <div className="contact-card space-y-0 text-left">
         {[
           { label: "Name", value: "Ibrahim Mahmud", icon: User },
-          { label: "WhatsApp", value: "+8801922071552", icon: MessageCircle },
           { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
-          { label: "Facebook Page", value: "Facebook Page", href: "https://www.facebook.com/share/1angi9HKK8/", icon: Facebook },
+          { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
         ].map(({ label, value, href, icon: Icon }, i, arr) => (
           <div key={label}>
             <div className="flex items-center gap-5 py-5 group">
@@ -250,9 +249,6 @@ const Contact = () => (
           </div>
         ))}
       </div>
-      <a href={WA} target="_blank" rel="noopener noreferrer" className="btn-neon text-base">
-        <MessageCircle size={22} /> Chat on WhatsApp
-      </a>
     </div>
   </section>
 );
