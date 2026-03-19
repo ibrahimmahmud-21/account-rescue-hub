@@ -43,7 +43,19 @@ const Navbar = () => (
   </nav>
 );
 
-const Hero = () => (
+const sliderImages = [slider1, slider2, slider3];
+
+const Hero = () => {
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % sliderImages.length);
+    }, 2500);
+    return () => clearInterval(timer);
+  }, []);
+
+  return (
   <section id="home" className="animated-bg relative overflow-hidden">
     <div className="grid-bg absolute inset-0 opacity-40" />
     {/* Ambient orbs */}
