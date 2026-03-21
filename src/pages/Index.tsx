@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, User, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle, ChevronDown, ChevronUp, Menu, X } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import slider1 from "@/assets/slider1.jpg";
@@ -29,20 +29,73 @@ const moreServices = [
   { name: "Instagram Monetization Fix", icon: BarChart3 },
 ];
 
+/* ── Animated Background Particles ── */
+const CyberParticles = () => {
+  const particles = Array.from({ length: 20 }, (_, i) => ({
+    id: i,
+    left: `${Math.random() * 100}%`,
+    top: `${Math.random() * 100}%`,
+    size: Math.random() * 3 + 1,
+    delay: Math.random() * 6,
+    duration: Math.random() * 4 + 4,
+  }));
+
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {particles.map((p) => (
+        <div
+          key={p.id}
+          className="particle"
+          style={{
+            left: p.left,
+            top: p.top,
+            width: p.size,
+            height: p.size,
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
+            opacity: 0.3,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+/* ── Fade-in on scroll wrapper ── */
+const FadeIn = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } }, { threshold: 0.15 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  return (
+    <div ref={ref} className={`transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"} ${className}`}>
+      {children}
+    </div>
+  );
+};
+
+/* ── Navbar ── */
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
     <nav className="glass-nav sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between py-3 px-4">
-        <span className="text-base font-bold text-foreground tracking-tight">
+        <span className="font-cyber text-sm font-bold text-foreground tracking-widest uppercase">
           <span className="neon-text">⟐</span> Ibrahim Mahmud
         </span>
         <div className="hidden sm:flex items-center gap-6">
           <a href="#home" className="nav-link">Home</a>
-          <a href="#services" className="nav-link">My Services</a>
+          <a href="#services" className="nav-link">Services</a>
           <a href="#contact" className="nav-link">Contact</a>
-          <a href="#contact" className="btn-neon !text-xs !py-2 !px-4">
-            <Mail size={14} /> Contact Me
+          <a href="#contact" className="btn-neon !text-[10px] !py-2 !px-4">
+            <Mail size={13} /> Contact Me
           </a>
         </div>
         <button className="sm:hidden text-foreground" onClick={() => setOpen(!open)}>
@@ -50,12 +103,12 @@ const Navbar = () => {
         </button>
       </div>
       {open && (
-        <div className="sm:hidden border-t border-border/30 px-4 pb-4 pt-2 flex flex-col gap-3 animate-fade-in">
+        <div className="sm:hidden border-t border-primary/10 px-4 pb-4 pt-2 flex flex-col gap-3 animate-fade-in">
           <a href="#home" className="nav-link" onClick={() => setOpen(false)}>Home</a>
-          <a href="#services" className="nav-link" onClick={() => setOpen(false)}>My Services</a>
+          <a href="#services" className="nav-link" onClick={() => setOpen(false)}>Services</a>
           <a href="#contact" className="nav-link" onClick={() => setOpen(false)}>Contact</a>
-          <a href="#contact" className="btn-neon !text-xs !py-2 !px-4 w-fit" onClick={() => setOpen(false)}>
-            <Mail size={14} /> Contact Me
+          <a href="#contact" className="btn-neon !text-[10px] !py-2 !px-4 w-fit" onClick={() => setOpen(false)}>
+            <Mail size={13} /> Contact Me
           </a>
         </div>
       )}
@@ -63,61 +116,55 @@ const Navbar = () => {
   );
 };
 
+/* ── Hero ── */
 const sliderImages = [slider1, slider2, slider3];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % sliderImages.length);
-    }, 2500);
+    const timer = setInterval(() => setCurrent((p) => (p + 1) % sliderImages.length), 2500);
     return () => clearInterval(timer);
   }, []);
 
   return (
-    <section id="home" className="animated-bg relative overflow-hidden">
-      <div className="grid-bg absolute inset-0 opacity-40" />
-      <div className="absolute top-20 left-10 w-64 md:w-96 h-64 md:h-96 rounded-full blur-[120px] opacity-[0.07]" style={{ background: 'hsl(145 65% 49%)' }} />
-      <div className="absolute bottom-20 right-10 w-52 md:w-80 h-52 md:h-80 rounded-full blur-[100px] opacity-[0.05]" style={{ background: 'hsl(200 80% 50%)' }} />
+    <section id="home" className="animated-bg relative overflow-hidden scan-overlay">
+      <div className="cyber-grid-bg absolute inset-0" />
+      <CyberParticles />
+      <div className="absolute top-20 left-10 w-64 md:w-96 h-64 md:h-96 rounded-full blur-[120px] opacity-[0.08]" style={{ background: 'hsl(168 100% 50%)' }} />
+      <div className="absolute bottom-20 right-10 w-52 md:w-80 h-52 md:h-80 rounded-full blur-[100px] opacity-[0.06]" style={{ background: 'hsl(190 100% 50%)' }} />
 
       <div className="container mx-auto px-4 py-16 md:py-36 lg:py-52 relative z-10">
         <div className="flex flex-col md:grid md:grid-cols-2 gap-10 md:gap-20 items-center text-center md:text-left">
           <div className="space-y-6 md:space-y-10 order-1">
             <div className="space-y-4 md:space-y-6">
-              <div className="inline-flex items-center gap-2 bg-secondary/60 border border-border/50 rounded-full px-4 py-1.5 text-[10px] md:text-xs font-medium text-muted-foreground backdrop-blur-sm">
+              <div className="inline-flex items-center gap-2 bg-secondary/40 border border-primary/20 rounded-full px-4 py-1.5 text-[10px] md:text-xs font-semibold text-primary/80 backdrop-blur-sm font-cyber uppercase tracking-widest">
                 <span className="w-1.5 h-1.5 rounded-full bg-primary animate-pulse" />
-                Professional Recovery Service
+                System Online
               </div>
-              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-black text-foreground leading-[1.05] tracking-tighter">
-                Social Media<br />
-                <span className="neon-text">Account Recovery</span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black leading-[1.05] tracking-tighter heading-cyber">
+                <span className="text-foreground">Social Media</span><br />
+                <span className="gradient-text">Account Recovery</span>
               </h1>
             </div>
-            <p className="text-muted-foreground text-sm md:text-lg leading-relaxed max-w-md mx-auto md:mx-0">
+            <p className="text-muted-foreground text-sm md:text-base leading-relaxed max-w-md mx-auto md:mx-0">
               Professional help to recover disabled, hacked, locked or restricted Facebook and Instagram accounts.
             </p>
             <div className="flex flex-wrap gap-3 justify-center md:justify-start">
-              <a href="#contact" className="btn-neon !text-sm !px-6 !py-3 md:!px-10 md:!py-5">
-                <Mail size={18} /> Contact Me
+              <a href="#contact" className="btn-neon !text-[10px] !px-6 !py-3 md:!px-10 md:!py-4">
+                <Mail size={16} /> Contact Me
               </a>
-              <a href="#services" className="btn-ghost-neon !text-sm !px-6 !py-3 md:!px-10 md:!py-5">
-                <ArrowDown size={18} /> View Services
+              <a href="#services" className="btn-ghost-neon !text-[10px] !px-6 !py-3 md:!px-10 md:!py-4">
+                <ArrowDown size={16} /> View Services
               </a>
             </div>
           </div>
 
           <div className="flex justify-center relative order-2">
-            <div className="absolute w-60 h-60 md:w-[28rem] md:h-[28rem] rounded-full blur-[100px] md:blur-[140px] opacity-25" style={{ background: 'hsl(145 65% 49%)' }} />
-            <div className="profile-neon w-48 h-48 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] relative z-10">
+            <div className="absolute w-60 h-60 md:w-[28rem] md:h-[28rem] rounded-full blur-[120px] md:blur-[160px] opacity-20" style={{ background: 'hsl(168 100% 50%)' }} />
+            <div className="profile-neon w-48 h-48 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] relative z-10" style={{ animation: 'pulse-glow 3s ease-in-out infinite, float 6s ease-in-out infinite' }}>
               {sliderImages.map((src, i) => (
-                <img
-                  key={i}
-                  src={src}
-                  alt={`Slide ${i + 1}`}
-                  className="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-700"
-                  style={{ opacity: i === current ? 1 : 0 }}
-                />
+                <img key={i} src={src} alt={`Slide ${i + 1}`} className="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-700" style={{ opacity: i === current ? 1 : 0 }} />
               ))}
             </div>
           </div>
@@ -127,34 +174,40 @@ const Hero = () => {
   );
 };
 
+/* ── Section Divider ── */
 const SectionDivider = () => (
-  <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(145 65% 49% / 0.15), transparent)' }} />
+  <div className="h-px w-full" style={{ background: 'linear-gradient(90deg, transparent, hsl(168 100% 50% / 0.15), hsl(190 100% 50% / 0.1), transparent)' }} />
 );
 
+/* ── Services ── */
 const Services = () => {
   const [showAll, setShowAll] = useState(false);
 
   return (
-    <section id="services" className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
-      <div className="grid-bg absolute inset-0 opacity-15" />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[150px] opacity-[0.04]" style={{ background: 'hsl(145 65% 49%)' }} />
+    <section id="services" className="py-16 md:py-36 relative overflow-hidden bg-background">
+      <div className="cyber-grid-bg absolute inset-0 opacity-40" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] rounded-full blur-[180px] opacity-[0.05]" style={{ background: 'hsl(168 100% 50%)' }} />
 
       <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
-          <p className="text-primary font-semibold text-xs uppercase tracking-[0.2em]">What I Offer</p>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">My Services</h2>
-          <p className="text-muted-foreground text-sm md:text-lg max-w-md mx-auto">End-to-end solutions for all your social media recovery needs</p>
-        </div>
+        <FadeIn>
+          <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
+            <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Services</p>
+            <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">My Services</h2>
+            <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto">End-to-end solutions for all your social media recovery needs</p>
+          </div>
+        </FadeIn>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-5">
-          {mainServices.map(({ name, icon: Icon }) => (
-            <div key={name} className="cyber-card-compact group">
-              <div className="mb-3 flex justify-center">
-                <div className="icon-glow !w-10 !h-10 md:!w-12 md:!h-12">
-                  <Icon size={20} className="text-primary" />
+          {mainServices.map(({ name, icon: Icon }, i) => (
+            <FadeIn key={name} className={`delay-${i * 100}`}>
+              <div className="cyber-card-compact group">
+                <div className="mb-3 flex justify-center">
+                  <div className="icon-glow !w-10 !h-10 md:!w-12 md:!h-12">
+                    <Icon size={20} className="text-primary" />
+                  </div>
                 </div>
+                <p className="text-xs md:text-sm font-semibold text-foreground/90 leading-snug">{name}</p>
               </div>
-              <p className="text-xs md:text-sm font-semibold text-foreground/90 leading-snug">{name}</p>
-            </div>
+            </FadeIn>
           ))}
         </div>
 
@@ -174,10 +227,7 @@ const Services = () => {
         )}
 
         <div className="flex justify-center mt-8">
-          <button
-            onClick={() => setShowAll(!showAll)}
-            className="btn-ghost-neon !text-xs !py-2.5 !px-6 flex items-center gap-2"
-          >
+          <button onClick={() => setShowAll(!showAll)} className="btn-ghost-neon !text-[10px] !py-2.5 !px-6 flex items-center gap-2">
             {showAll ? <><ChevronUp size={16} /> Show Less</> : <><ChevronDown size={16} /> View All Services</>}
           </button>
         </div>
@@ -186,6 +236,7 @@ const Services = () => {
   );
 };
 
+/* ── Process ── */
 const steps = [
   { number: "01", title: "Explain Your Issue", description: "Describe your account problem clearly.", icon: FileText },
   { number: "02", title: "Issue Analysis", description: "We review the problem and check possible solutions.", icon: Search },
@@ -193,32 +244,41 @@ const steps = [
 ];
 
 const Process = () => (
-  <section className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(228 55% 7%)' }}>
-    <div className="grid-bg absolute inset-0 opacity-25" />
+  <section className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(224 55% 4%)' }}>
+    <div className="cyber-grid-bg absolute inset-0 opacity-30" />
     <div className="container mx-auto px-4 relative z-10">
-      <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
-        <p className="text-primary font-semibold text-xs uppercase tracking-[0.2em]">Simple & Fast</p>
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">How the Process Works</h2>
-        <p className="text-muted-foreground text-sm md:text-lg max-w-md mx-auto">Three simple steps to get your account back</p>
-      </div>
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto">
-        {steps.map(({ number, title, description, icon: Icon }, i) => (
-          <div key={number} className={`cyber-card-compact group text-left ${i === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] md:max-w-none mx-auto md:mx-0' : ''}`}>
-            <div className="flex items-center gap-3 mb-3">
-              <div className="icon-glow !w-10 !h-10 shrink-0">
-                <Icon size={18} className="text-primary" />
+      <FadeIn>
+        <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
+          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Process</p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">How It Works</h2>
+          <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto">Three simple steps to get your account back</p>
+        </div>
+      </FadeIn>
+      <div className="relative max-w-5xl mx-auto">
+        {/* Connecting line for desktop */}
+        <div className="hidden md:block absolute top-1/2 left-[16%] right-[16%] h-[2px] -translate-y-1/2 z-0" style={{ background: 'linear-gradient(90deg, hsl(168 100% 50% / 0.3), hsl(190 100% 50% / 0.2), hsl(168 100% 50% / 0.3))', boxShadow: '0 0 10px hsl(168 100% 50% / 0.2)' }} />
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 relative z-10">
+          {steps.map(({ number, title, description, icon: Icon }, i) => (
+            <FadeIn key={number} className={i === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] md:max-w-none mx-auto md:mx-0' : ''}>
+              <div className="cyber-card-compact group text-left">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="icon-glow !w-10 !h-10 shrink-0">
+                    <Icon size={18} className="text-primary" />
+                  </div>
+                  <span className="text-xl md:text-2xl font-black neon-text-cyan font-cyber opacity-40">{number}</span>
+                </div>
+                <h3 className="text-sm md:text-base font-bold text-foreground mb-1">{title}</h3>
+                <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{description}</p>
               </div>
-              <span className="text-xl md:text-2xl font-black text-primary/20">{number}</span>
-            </div>
-            <h3 className="text-sm md:text-base font-bold text-foreground mb-1">{title}</h3>
-            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{description}</p>
-          </div>
-        ))}
+            </FadeIn>
+          ))}
+        </div>
       </div>
     </div>
   </section>
 );
 
+/* ── Why Choose ── */
 const whyChoose = [
   { title: "Fast Service", description: "Quick and efficient help for account recovery issues.", icon: Zap },
   { title: "Secure Process", description: "Your account information stays private and protected.", icon: Shield },
@@ -226,32 +286,37 @@ const whyChoose = [
 ];
 
 const WhyChoose = () => (
-  <section className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
-    <div className="grid-bg absolute inset-0 opacity-15" />
+  <section className="py-16 md:py-36 relative overflow-hidden bg-background">
+    <div className="cyber-grid-bg absolute inset-0 opacity-30" />
     <div className="container mx-auto px-4 relative z-10">
-      <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
-        <p className="text-primary font-semibold text-xs uppercase tracking-[0.2em]">Why Us</p>
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">Why Choose My Service</h2>
-      </div>
+      <FadeIn>
+        <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
+          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Why Us</p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">Why Choose My Service</h2>
+        </div>
+      </FadeIn>
       <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-6 max-w-5xl mx-auto">
         {whyChoose.map(({ title, description, icon: Icon }, i) => (
-          <div key={title} className={`cyber-card-compact group text-left ${i === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] md:max-w-none mx-auto md:mx-0' : ''}`}>
-            <div className="mb-3">
-              <div className="icon-glow !w-10 !h-10">
-                <Icon size={18} className="text-primary" />
+          <FadeIn key={title} className={i === 2 ? 'col-span-2 md:col-span-1 max-w-[50%] md:max-w-none mx-auto md:mx-0' : ''}>
+            <div className="cyber-card-compact group text-left">
+              <div className="mb-3">
+                <div className="icon-glow !w-10 !h-10">
+                  <Icon size={18} className="text-primary" />
+                </div>
               </div>
+              <h3 className="text-sm md:text-base font-bold text-foreground mb-1 flex items-center gap-1.5">
+                <span className="neon-text text-xs">✔</span> {title}
+              </h3>
+              <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{description}</p>
             </div>
-            <h3 className="text-sm md:text-base font-bold text-foreground mb-1 flex items-center gap-1.5">
-              <span className="text-primary text-xs">✔</span> {title}
-            </h3>
-            <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{description}</p>
-          </div>
+          </FadeIn>
         ))}
       </div>
     </div>
   </section>
 );
 
+/* ── FAQ ── */
 const faqs = [
   { question: "How long does the recovery process take?", answer: "The time depends on the type of issue.", icon: Clock },
   { question: "Is my account information safe?", answer: "Yes, your information is kept private and secure.", icon: LockKeyhole },
@@ -259,31 +324,35 @@ const faqs = [
 ];
 
 const FAQ = () => (
-  <section className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(228 55% 7%)' }}>
-    <div className="grid-bg absolute inset-0 opacity-25" />
+  <section className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(224 55% 4%)' }}>
+    <div className="cyber-grid-bg absolute inset-0 opacity-20" />
     <div className="container mx-auto px-4 relative z-10">
-      <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
-        <p className="text-primary font-semibold text-xs uppercase tracking-[0.2em]">Got Questions?</p>
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">Frequently Asked Questions</h2>
-      </div>
+      <FadeIn>
+        <div className="text-center mb-10 md:mb-20 space-y-2 md:space-y-4">
+          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// FAQ</p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">Frequently Asked Questions</h2>
+        </div>
+      </FadeIn>
       <div className="max-w-3xl mx-auto">
         <Accordion type="single" collapsible className="space-y-3">
           {faqs.map(({ question, answer, icon: Icon }, i) => (
-            <AccordionItem key={i} value={`faq-${i}`} className="border-none">
-              <div className="faq-card">
-                <AccordionTrigger className="hover:no-underline py-0 gap-4">
-                  <div className="flex items-center gap-3">
-                    <div className="icon-glow !w-9 !h-9 shrink-0">
-                      <Icon size={16} className="text-primary" />
+            <FadeIn key={i}>
+              <AccordionItem value={`faq-${i}`} className="border-none">
+                <div className="faq-card">
+                  <AccordionTrigger className="hover:no-underline py-0 gap-4">
+                    <div className="flex items-center gap-3">
+                      <div className="icon-glow !w-9 !h-9 shrink-0">
+                        <Icon size={16} className="text-primary" />
+                      </div>
+                      <span className="text-sm md:text-base font-bold text-foreground text-left">{question}</span>
                     </div>
-                    <span className="text-sm md:text-base font-bold text-foreground text-left">{question}</span>
-                  </div>
-                </AccordionTrigger>
-                <AccordionContent className="pl-12 pt-2 pb-0">
-                  <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{answer}</p>
-                </AccordionContent>
-              </div>
-            </AccordionItem>
+                  </AccordionTrigger>
+                  <AccordionContent className="pl-12 pt-2 pb-0">
+                    <p className="text-muted-foreground text-xs md:text-sm leading-relaxed">{answer}</p>
+                  </AccordionContent>
+                </div>
+              </AccordionItem>
+            </FadeIn>
           ))}
         </Accordion>
       </div>
@@ -291,56 +360,64 @@ const FAQ = () => (
   </section>
 );
 
+/* ── Contact ── */
 const Contact = () => (
-  <section id="contact" className="py-16 md:py-36 relative overflow-hidden" style={{ background: 'hsl(228 60% 5%)' }}>
-    <div className="grid-bg absolute inset-0 opacity-15" />
+  <section id="contact" className="py-16 md:py-36 relative overflow-hidden bg-background">
+    <div className="cyber-grid-bg absolute inset-0 opacity-30" />
+    <CyberParticles />
     <div className="container mx-auto px-4 max-w-xl text-center relative z-10">
-      <div className="space-y-2 md:space-y-4 mb-8 md:mb-14">
-        <p className="text-primary font-semibold text-xs uppercase tracking-[0.2em]">Get In Touch</p>
-        <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground tracking-tight">Contact Me</h2>
-      </div>
-      <div className="contact-card space-y-0 text-left">
-        {[
-          { label: "Name", value: "Ibrahim Mahmud", icon: User },
-          { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
-          { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
-        ].map(({ label, value, href, icon: Icon }, i, arr) => (
-          <div key={label}>
-            <div className="flex items-center gap-4 py-4 group">
-              <div className="icon-glow !w-9 !h-9 shrink-0">
-                <Icon size={16} className="text-primary" />
+      <FadeIn>
+        <div className="space-y-2 md:space-y-4 mb-8 md:mb-14">
+          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Contact</p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
+        </div>
+      </FadeIn>
+      <FadeIn>
+        <div className="contact-card space-y-0 text-left">
+          {[
+            { label: "Name", value: "Ibrahim Mahmud", icon: User },
+            { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
+            { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
+          ].map(({ label, value, href, icon: Icon }, i, arr) => (
+            <div key={label}>
+              <div className="flex items-center gap-4 py-4 group">
+                <div className="icon-glow !w-9 !h-9 shrink-0">
+                  <Icon size={16} className="text-primary" />
+                </div>
+                <div className="flex flex-col gap-0.5">
+                  <span className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-wider font-cyber">{label}</span>
+                  {href ? (
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs md:text-sm font-semibold">{value}</a>
+                  ) : (
+                    <span className="text-foreground text-xs md:text-sm font-semibold">{value}</span>
+                  )}
+                </div>
               </div>
-              <div className="flex flex-col gap-0.5">
-                <span className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-wider">{label}</span>
-                {href ? (
-                  <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs md:text-sm font-semibold">{value}</a>
-                ) : (
-                  <span className="text-foreground text-xs md:text-sm font-semibold">{value}</span>
-                )}
-              </div>
+              {i < arr.length - 1 && <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(168 100% 50% / 0.1), transparent)' }} />}
             </div>
-            {i < arr.length - 1 && <div className="h-px bg-border/40" />}
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      </FadeIn>
     </div>
   </section>
 );
 
+/* ── Footer ── */
 const Footer = () => (
-  <footer className="border-t border-border/30 py-8 md:py-14" style={{ background: 'hsl(228 60% 5%)' }}>
+  <footer className="border-t border-primary/10 py-8 md:py-14 bg-background">
     <div className="container mx-auto px-4 text-center space-y-3 md:space-y-5">
-      <p className="text-foreground font-bold text-base tracking-tight"><span className="neon-text">⟐</span> Ibrahim Mahmud</p>
+      <p className="text-foreground font-cyber font-bold text-sm tracking-widest uppercase"><span className="neon-text">⟐</span> Ibrahim Mahmud</p>
       <p className="text-muted-foreground text-xs">Social Media Account Recovery Service</p>
       <div className="flex justify-center gap-6 text-xs">
         <a href="mailto:ibmm923@gmail.com" className="footer-link">Email</a>
         <a href={FB} target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
       </div>
-      <p className="text-muted-foreground/40 text-[10px] pt-2">© 2026 Ibrahim Mahmud</p>
+      <p className="text-muted-foreground/30 text-[10px] pt-2 font-cyber">© 2026 Ibrahim Mahmud</p>
     </div>
   </footer>
 );
 
+/* ── Page ── */
 const Index = () => (
   <>
     <Navbar />
