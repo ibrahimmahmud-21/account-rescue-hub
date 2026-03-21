@@ -137,12 +137,38 @@
     @apply opacity-100;
   }
 
+  .cyber-card-compact {
+    @apply rounded-xl p-4 md:p-5 text-center transition-all duration-500 cursor-default relative overflow-hidden;
+    background: linear-gradient(135deg, hsl(228 50% 10% / 0.9), hsl(228 55% 8% / 0.9));
+    border: 1px solid hsl(228 35% 16% / 0.6);
+  }
+  .cyber-card-compact::before {
+    content: '';
+    @apply absolute inset-0 rounded-xl opacity-0 transition-opacity duration-500;
+    background: linear-gradient(135deg, hsl(145 65% 49% / 0.03), transparent);
+  }
+  .cyber-card-compact:hover {
+    border-color: hsl(145 65% 49% / 0.5);
+    box-shadow: 0 0 25px hsl(145 65% 49% / 0.1), 0 8px 30px hsl(0 0% 0% / 0.4);
+    @apply -translate-y-1.5;
+  }
+  .cyber-card-compact:hover::before {
+    @apply opacity-100;
+  }
+
+  .faq-card {
+    @apply rounded-xl p-4 md:p-5 transition-all duration-300;
+    background: linear-gradient(135deg, hsl(228 50% 10% / 0.9), hsl(228 55% 8% / 0.9));
+    border: 1px solid hsl(228 35% 16% / 0.6);
+  }
+
   .icon-glow {
     @apply w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-500;
     background: hsl(145 65% 49% / 0.1);
     box-shadow: 0 0 20px hsl(145 65% 49% / 0.08);
   }
-  .cyber-card:hover .icon-glow {
+  .cyber-card:hover .icon-glow,
+  .cyber-card-compact:hover .icon-glow {
     background: hsl(145 65% 49% / 0.18);
     box-shadow: 0 0 30px hsl(145 65% 49% / 0.2), 0 0 60px hsl(145 65% 49% / 0.05);
   }
@@ -166,24 +192,13 @@
   }
 
   .contact-card {
-    @apply rounded-2xl p-8 backdrop-blur-sm;
+    @apply rounded-2xl p-5 md:p-8 backdrop-blur-sm;
     background: linear-gradient(135deg, hsl(228 50% 10% / 0.7), hsl(228 55% 8% / 0.7));
     border: 1px solid hsl(228 35% 16% / 0.5);
   }
 
   .footer-link {
     @apply text-muted-foreground hover:text-primary transition-colors duration-200 text-sm;
-  }
-
-  .floating-wa {
-    @apply fixed bottom-6 right-6 z-50 bg-primary text-primary-foreground p-4 rounded-full transition-all duration-300;
-    box-shadow: 0 0 20px hsl(145 65% 49% / 0.4), 0 4px 15px hsl(0 0% 0% / 0.3);
-    animation: float 3s ease-in-out infinite;
-  }
-  .floating-wa:hover {
-    @apply scale-110;
-    box-shadow: 0 0 40px hsl(145 65% 49% / 0.5), 0 4px 20px hsl(0 0% 0% / 0.4);
-    animation: none;
   }
 
   .grid-bg {
