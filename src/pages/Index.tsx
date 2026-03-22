@@ -4,6 +4,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import slider1 from "@/assets/slider1.jpg";
 import slider2 from "@/assets/slider2.jpg";
 import slider3 from "@/assets/slider3.jpg";
+import eidImage from "@/assets/eid-mubarak.png";
 
 const FB = "https://www.facebook.com/share/1EDcLHbrgn/";
 
