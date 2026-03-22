@@ -419,7 +419,7 @@ const Contact = () => (
 const Footer = () => (
   <footer className="border-t border-primary/10 py-8 md:py-14 bg-background">
     <div className="container mx-auto px-4 text-center space-y-3 md:space-y-5">
-      <p className="text-foreground font-cyber font-bold text-sm tracking-widest uppercase"><span className="neon-text">⟐</span> Ibrahim Mahmud</p>
+      <p className="text-foreground font-cyber font-bold text-sm tracking-[0.15em] uppercase neon-text">Ibrahim Mahmud</p>
       <p className="text-muted-foreground text-xs">Social Media Account Recovery Service</p>
       <div className="flex justify-center gap-6 text-xs">
         <a href="mailto:ibmm923@gmail.com" className="footer-link">Email</a>
