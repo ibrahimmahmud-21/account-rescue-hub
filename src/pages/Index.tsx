@@ -87,9 +87,14 @@ const Navbar = () => {
   return (
     <nav className="glass-nav sticky top-0 z-50">
       <div className="container mx-auto flex items-center justify-between py-3 px-4">
-        <span className="font-cyber text-sm font-bold text-foreground tracking-widest uppercase">
-          <span className="neon-text">⟐</span> Ibrahim Mahmud
-        </span>
+        <a href="#home" className="flex items-center gap-2.5 group">
+          <div className="w-7 h-7 rounded-md bg-primary/15 border border-primary/30 flex items-center justify-center relative overflow-hidden group-hover:border-primary/60 transition-all duration-300" style={{ boxShadow: '0 0 12px hsl(168 100% 50% / 0.25)' }}>
+            <div className="w-2.5 h-2.5 rounded-sm bg-primary" style={{ boxShadow: '0 0 8px hsl(168 100% 50% / 0.8)' }} />
+          </div>
+          <span className="font-cyber text-sm font-bold tracking-[0.15em] uppercase neon-text">
+            Ibrahim Mahmud
+          </span>
+        </a>
         <div className="hidden sm:flex items-center gap-6">
           <a href="#home" className="nav-link">Home</a>
           <a href="#services" className="nav-link">Services</a>
@@ -115,7 +120,6 @@ const Navbar = () => {
     </nav>
   );
 };
-
 /* ── Hero ── */
 const sliderImages = [slider1, slider2, slider3];
 
