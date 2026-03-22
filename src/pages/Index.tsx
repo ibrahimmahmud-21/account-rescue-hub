@@ -365,47 +365,56 @@ const FAQ = () => (
 );
 
 /* ── Contact ── */
+const contactItems = [
+  { label: "Name", value: "Ibrahim Mahmud", icon: User },
+  { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
+  { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
+];
+
 const Contact = () => (
   <section id="contact" className="py-16 md:py-36 relative overflow-hidden bg-background">
     <div className="cyber-grid-bg absolute inset-0 opacity-30" />
     <CyberParticles />
-    <div className="container mx-auto px-4 max-w-xl text-center relative z-10">
+    <div className="container mx-auto px-4 max-w-2xl relative z-10">
       <FadeIn>
-        <div className="space-y-2 md:space-y-4 mb-8 md:mb-14">
+        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-14">
           <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Contact</p>
           <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
         </div>
       </FadeIn>
-      <FadeIn>
-        <div className="contact-card space-y-0 text-left">
-          {[
-            { label: "Name", value: "Ibrahim Mahmud", icon: User },
-            { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
-            { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
-          ].map(({ label, value, href, icon: Icon }, i, arr) => (
-            <div key={label}>
-              <div className="flex items-center gap-4 py-4 group">
-                <div className="icon-glow !w-9 !h-9 shrink-0">
-                  <Icon size={16} className="text-primary" />
+
+      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
+        {contactItems.map(({ label, value, href, icon: Icon }) => (
+          <FadeIn key={label}>
+            <div className="glass-card group hover:-translate-y-1 transition-all duration-300 !p-4 md:!p-5" style={{ borderColor: 'hsl(168 100% 50% / 0.12)' }}>
+              <div className="flex sm:flex-col items-center sm:items-center gap-3 sm:gap-2 sm:text-center">
+                <div className="icon-glow !w-10 !h-10 shrink-0 group-hover:!shadow-[0_0_20px_hsl(168_100%_50%_/_0.3)]">
+                  <Icon size={18} className="text-primary" />
                 </div>
                 <div className="flex flex-col gap-0.5">
-                  <span className="text-muted-foreground text-[10px] md:text-xs uppercase tracking-wider font-cyber">{label}</span>
+                  <span className="text-muted-foreground text-[10px] uppercase tracking-wider font-cyber">{label}</span>
                   {href ? (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs md:text-sm font-semibold">{value}</a>
+                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs md:text-sm font-semibold break-all">{value}</a>
                   ) : (
                     <span className="text-foreground text-xs md:text-sm font-semibold">{value}</span>
                   )}
                 </div>
               </div>
-              {i < arr.length - 1 && <div className="h-px" style={{ background: 'linear-gradient(90deg, transparent, hsl(168 100% 50% / 0.1), transparent)' }} />}
             </div>
-          ))}
+          </FadeIn>
+        ))}
+      </div>
+
+      <FadeIn>
+        <div className="flex justify-center mt-8 md:mt-12">
+          <a href="#contact" className="btn-neon !text-[10px] !px-8 !py-3.5 md:!px-12 md:!py-4">
+            <ShieldCheck size={16} /> Start Recovery Now
+          </a>
         </div>
       </FadeIn>
     </div>
   </section>
 );
-
 /* ── Footer ── */
 const Footer = () => (
   <footer className="border-t border-primary/10 py-8 md:py-14 bg-background">
