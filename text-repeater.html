@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Text Repeater</title><link rel="stylesheet" href="../style.css"></head><body>
+<div class="tool-page">
+<h1>🔁 Text Repeater</h1>
+<label>Enter text</label><input type="text" id="txt" placeholder="Hello">
+<label>Repeat count</label><input type="number" id="count" value="10" min="1" max="5000">
+<label>Separator</label>
+<select id="sep"><option value="\n">New Line</option><option value=" ">Space</option><option value="">No separator</option><option value=", ">Comma</option></select>
+<div class="btn-row"><button class="btn" onclick="rep()">Repeat</button><button class="btn btn-back" onclick="location.href='../index.html'">← Back</button></div>
+<div class="output" id="out" style="max-height:300px;overflow-y:auto"></div>
+<button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
+</div>
+<script src="../script.js"></script>
+<script>
+function rep(){
+  const t=document.getElementById('txt').value;
+  if(!t){alert('Enter text');return}
+  let c=parseInt(document.getElementById('count').value)||10;
+  if(c>5000)c=5000;
+  const s=document.getElementById('sep').value.replace('\\n','\n');
+  document.getElementById('out').innerText=Array(c).fill(t).join(s);
+}
+</script></body></html>
