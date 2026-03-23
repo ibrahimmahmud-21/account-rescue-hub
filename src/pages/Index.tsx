@@ -435,7 +435,7 @@ const ToolsSection = () => (
 
       <FadeIn>
         <a
-          href="https://ibrahimmahmud-21.github.io/account-rescue-hub/"
+          href="/tools/"
           target="_blank"
           rel="noopener noreferrer"
           className="group block cyber-card hover:!border-primary/50 transition-all duration-500 !p-6 md:!p-8"
