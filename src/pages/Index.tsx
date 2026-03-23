@@ -416,6 +416,47 @@ const Contact = () => (
     </div>
   </section>
 );
+
+/* ── Tools Section ── */
+const ToolsSection = () => (
+  <section className="py-16 md:py-28 relative overflow-hidden bg-background">
+    <div className="cyber-grid-bg absolute inset-0 opacity-20" />
+    <CyberParticles />
+    <div className="container mx-auto px-4 max-w-2xl relative z-10">
+      <FadeIn>
+        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-12">
+          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Tools</p>
+          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">
+            <span className="gradient-text">🔥 Tools Hub</span>
+          </h2>
+          <p className="text-muted-foreground text-xs md:text-sm max-w-md mx-auto">Fun & useful online tools — stylish text, fake chat, bio generator and more.</p>
+        </div>
+      </FadeIn>
+
+      <FadeIn>
+        <a
+          href="https://ibrahimmahmud-21.github.io/account-rescue-hub/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="group block cyber-card hover:!border-primary/50 transition-all duration-500 !p-6 md:!p-8"
+        >
+          <div className="flex flex-col items-center gap-4 text-center">
+            <div className="icon-glow !w-16 !h-16 group-hover:!shadow-[0_0_30px_hsl(168_100%_50%_/_0.4)] transition-all duration-500">
+              <Flame size={28} className="text-primary" />
+            </div>
+            <div className="space-y-2">
+              <h3 className="text-lg md:text-xl font-bold text-foreground heading-cyber">Try My Tools</h3>
+              <p className="text-muted-foreground text-xs md:text-sm">10+ free online tools — Name Styler, Fake Chat, Bio Generator, Love Calculator & more!</p>
+            </div>
+            <span className="btn-neon !text-[10px] !px-8 !py-3 md:!px-10 md:!py-3.5 group-hover:scale-105 transition-transform">
+              <ExternalLink size={14} /> Open Tools Hub
+            </span>
+          </div>
+        </a>
+      </FadeIn>
+    </div>
+  </section>
+);
 /* ── Footer ── */
 const Footer = () => (
   <footer className="border-t border-primary/10 py-8 md:py-14 bg-background">
