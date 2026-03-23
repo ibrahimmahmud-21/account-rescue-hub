@@ -1,13 +1,13 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Name Style Generator</title><link rel="stylesheet" href="../style.css"></head><body>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Name Style Generator</title><link rel="stylesheet" href="style.css"></head><body>
 <div class="tool-page">
 <h1>✏️ Name Style Generator</h1>
 <label>Enter your name</label>
 <input type="text" id="nameIn" placeholder="e.g. Ibrahim">
-<div class="btn-row"><button class="btn" onclick="generate()">Generate Styles</button><button class="btn btn-back" onclick="location.href='../index.html'">← Back</button></div>
+<div class="btn-row"><button class="btn" onclick="generate()">Generate Styles</button><button class="btn btn-back" onclick="location.href='index.html'">← Back</button></div>
 <div class="output" id="out"></div>
 <button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
 </div>
-<script src="../script.js"></script>
+<script src="script.js"></script>
 <script>
 function generate(){
   const n=document.getElementById('nameIn').value.trim();
