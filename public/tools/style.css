@@ -1,0 +1,43 @@
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',sans-serif;background:#0a0a0a;color:#e0e0e0;min-height:100vh}
+a{text-decoration:none;color:inherit}
+.container{max-width:1100px;margin:0 auto;padding:20px}
+header{text-align:center;padding:40px 20px 20px}
+header h1{font-size:2rem;margin-bottom:8px}
+header p{color:#888;font-size:1rem}
+.neon{color:#00ffcc;text-shadow:0 0 10px #00ffcc55}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;padding:20px}
+.card{background:#111;border:1px solid #00ffcc22;border-radius:12px;padding:20px;transition:.3s}
+.card:hover{border-color:#00ffcc;box-shadow:0 0 20px #00ffcc22;transform:translateY(-4px)}
+.card h3{color:#00ffcc;margin-bottom:6px;font-size:1.1rem}
+.card p{color:#999;font-size:.85rem;margin-bottom:14px;line-height:1.4}
+.btn{display:inline-block;background:#00ffcc;color:#000;font-weight:700;padding:8px 20px;border-radius:8px;border:none;cursor:pointer;font-size:.85rem;transition:.3s}
+.btn:hover{background:#00eaff;box-shadow:0 0 14px #00ffcc55}
+.tool-page{max-width:600px;margin:0 auto;padding:30px 20px}
+.tool-page h1{font-size:1.5rem;margin-bottom:16px;color:#00ffcc}
+.tool-page label{display:block;color:#aaa;margin:10px 0 4px;font-size:.85rem}
+.tool-page input,.tool-page textarea,.tool-page select{width:100%;padding:10px;border-radius:8px;border:1px solid #00ffcc33;background:#111;color:#fff;font-size:.9rem;outline:none}
+.tool-page input:focus,.tool-page textarea:focus{border-color:#00ffcc}
+.tool-page textarea{resize:vertical;min-height:80px}
+.output{background:#111;border:1px solid #00ffcc22;border-radius:10px;padding:14px;margin-top:14px;min-height:60px;white-space:pre-wrap;word-break:break-word;font-size:.9rem;line-height:1.5}
+.btn-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.btn-sm{padding:6px 14px;font-size:.8rem}
+.btn-back{background:transparent;border:1px solid #00ffcc44;color:#00ffcc}
+.btn-back:hover{background:#00ffcc11}
+.btn-copy{background:#222;color:#00ffcc;border:1px solid #00ffcc44}
+.btn-copy:hover{background:#00ffcc22}
+.chat-box{background:#0d0d0d;border:1px solid #00ffcc22;border-radius:10px;padding:14px;margin-top:14px;max-height:300px;overflow-y:auto}
+.chat-msg{margin-bottom:10px;padding:8px 12px;border-radius:8px;max-width:80%}
+.chat-msg.sent{background:#00ffcc22;margin-left:auto;text-align:right}
+.chat-msg.recv{background:#1a1a1a}
+.chat-msg .name{font-size:.7rem;color:#00ffcc;margin-bottom:2px}
+.call-screen{background:#111;border:1px solid #00ffcc33;border-radius:16px;padding:30px 20px;text-align:center;margin-top:14px}
+.call-screen .caller{font-size:1.4rem;color:#00ffcc;margin:10px 0}
+.call-screen .status{color:#888;font-size:.85rem;margin-bottom:20px}
+.call-screen .avatar{width:80px;height:80px;border-radius:50%;background:#00ffcc22;margin:0 auto 14px;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.call-btns{display:flex;justify-content:center;gap:16px}
+.call-btn{width:50px;height:50px;border-radius:50%;border:none;font-size:1.2rem;cursor:pointer}
+.call-btn.accept{background:#00ffcc;color:#000}
+.call-btn.reject{background:#ff3355;color:#fff}
+canvas{max-width:100%;border-radius:10px;margin-top:14px;border:1px solid #00ffcc22}
+@media(max-width:600px){header h1{font-size:1.5rem}.cards{grid-template-columns:1fr}.tool-page{padding:20px 14px}}

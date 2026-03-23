@@ -1,0 +1,27 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Nickname Generator</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="tool-page">
+<h1>🏷️ Nickname Generator</h1>
+<label>Enter your name</label><input type="text" id="nameIn" placeholder="e.g. Ibrahim">
+<div class="btn-row"><button class="btn" onclick="gen()">Generate</button><button class="btn btn-back" onclick="location.href='index.html'">← Back</button></div>
+<div class="output" id="out"></div>
+<button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
+</div>
+<script src="script.js"></script>
+<script>
+function gen(){
+  const n=document.getElementById('nameIn').value.trim();
+  if(!n){alert('Enter a name');return}
+  const pre=['Dark','Shadow','Cyber','Neo','Dr.','Mr.','The','King','Ghost','Ice','Fire','Storm','Blaze','Toxic','Epic'];
+  const suf=['X','Pro','Boss','Lord','Master','King','Killer','Star','Wolf','Dragon','Ninja','Beast','God','Viper','Legend'];
+  const r=[];
+  for(let i=0;i<12;i++){
+    const p=pre[Math.floor(Math.random()*pre.length)];
+    const s=suf[Math.floor(Math.random()*suf.length)];
+    const v=Math.random();
+    if(v<0.33)r.push(p+n);
+    else if(v<0.66)r.push(n+s);
+    else r.push(p+n+s);
+  }
+  document.getElementById('out').innerText=[...new Set(r)].join('\n');
+}
+</script></body></html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Fake Chat Generator</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="tool-page">
+<h1>💬 Fake Chat Generator</h1>
+<label>Sender Name</label><input type="text" id="sender" placeholder="e.g. Ali">
+<label>Your Name</label><input type="text" id="receiver" placeholder="e.g. Ibrahim">
+<label>Message (sender)</label><input type="text" id="msgS" placeholder="Hey, how are you?">
+<label>Reply (you)</label><input type="text" id="msgR" placeholder="I'm good!">
+<div class="btn-row"><button class="btn" onclick="addChat()">Add Messages</button><button class="btn btn-copy" onclick="clearChat()">Clear</button><button class="btn btn-back" onclick="location.href='index.html'">← Back</button></div>
+<div class="chat-box" id="chatBox"></div>
+</div>
+<script>
+function addChat(){
+  const s=document.getElementById('sender').value.trim()||'Sender';
+  const r=document.getElementById('receiver').value.trim()||'You';
+  const ms=document.getElementById('msgS').value.trim();
+  const mr=document.getElementById('msgR').value.trim();
+  const box=document.getElementById('chatBox');
+  if(ms){box.innerHTML+=`<div class="chat-msg recv"><div class="name">${s}</div>${ms}</div>`}
+  if(mr){box.innerHTML+=`<div class="chat-msg sent"><div class="name">${r}</div>${mr}</div>`}
+  document.getElementById('msgS').value='';document.getElementById('msgR').value='';
+  box.scrollTop=box.scrollHeight;
+}
+function clearChat(){document.getElementById('chatBox').innerHTML=''}
+</script></body></html>

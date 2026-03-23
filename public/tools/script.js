@@ -1,0 +1,1 @@
+function copyText(id){const el=document.getElementById(id);if(!el)return;const t=el.innerText;navigator.clipboard.writeText(t).then(()=>alert('Copied!')).catch(()=>{const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();document.execCommand('copy');document.body.removeChild(ta);alert('Copied!')})}

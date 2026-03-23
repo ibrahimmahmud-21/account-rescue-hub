@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Profile Pic Frame</title><link rel="stylesheet" href="style.css"></head><body>
+<div class="tool-page">
+<h1>🖼️ Profile Pic Frame Maker</h1>
+<label>Upload Image</label><input type="file" id="imgIn" accept="image/*">
+<label>Frame Style</label>
+<select id="frame"><option value="neon">Neon Cyan</option><option value="gold">Gold Ring</option><option value="fire">Fire Ring</option><option value="gradient">Gradient</option></select>
+<div class="btn-row"><button class="btn" onclick="apply()">Apply Frame</button><button class="btn" onclick="download()">Download</button><button class="btn btn-back" onclick="location.href='index.html'">← Back</button></div>
+<canvas id="canvas" width="400" height="400"></canvas>
+</div>
+<script>
+const cv=document.getElementById('canvas'),ctx=cv.getContext('2d');
+function apply(){
+  const f=document.getElementById('imgIn').files[0];
+  if(!f){alert('Upload an image');return}
+  const img=new Image();
+  img.onload=()=>{
+    ctx.clearRect(0,0,400,400);
+    ctx.save();ctx.beginPath();ctx.arc(200,200,160,0,Math.PI*2);ctx.clip();
+    const s=Math.min(400/img.width,400/img.height)*1.2;
+    const w=img.width*s,h=img.height*s;
+    ctx.drawImage(img,200-w/2,200-h/2,w,h);ctx.restore();
+    const style=document.getElementById('frame').value;
+    ctx.lineWidth=10;ctx.beginPath();ctx.arc(200,200,165,0,Math.PI*2);
+    if(style==='neon'){ctx.strokeStyle='#00ffcc';ctx.shadowColor='#00ffcc';ctx.shadowBlur=20}
+    else if(style==='gold'){ctx.strokeStyle='#ffd700';ctx.shadowColor='#ffd700';ctx.shadowBlur=15}
+    else if(style==='fire'){ctx.strokeStyle='#ff4500';ctx.shadowColor='#ff4500';ctx.shadowBlur=20}
+    else{const g=ctx.createLinearGradient(0,0,400,400);g.addColorStop(0,'#00ffcc');g.addColorStop(1,'#ff00ff');ctx.strokeStyle=g;ctx.shadowBlur=18;ctx.shadowColor='#00ffcc'}
+    ctx.stroke();ctx.shadowBlur=0;
+  };
+  img.src=URL.createObjectURL(f);
+}
+function download(){const a=document.createElement('a');a.download='framed-pic.png';a.href=cv.toDataURL();a.click()}
+</script></body></html>
