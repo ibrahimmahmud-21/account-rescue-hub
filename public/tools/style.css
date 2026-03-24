@@ -40,4 +40,15 @@ header p{color:#888;font-size:1rem}
 .call-btn.accept{background:#00ffcc;color:#000}
 .call-btn.reject{background:#ff3355;color:#fff}
 canvas{max-width:100%;border-radius:10px;margin-top:14px;border:1px solid #00ffcc22}
+
+/* AI Toggle */
+.ai-toggle-bar{display:flex;justify-content:flex-end;margin-bottom:10px}
+.ai-switch{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.ai-label{font-size:.8rem;color:#00ffcc;font-weight:600}
+.ai-switch input{display:none}
+.ai-slider{width:40px;height:22px;background:#333;border-radius:12px;position:relative;transition:.3s;border:1px solid #00ffcc33}
+.ai-slider::after{content:'';position:absolute;top:2px;left:2px;width:16px;height:16px;background:#888;border-radius:50%;transition:.3s}
+.ai-switch input:checked+.ai-slider{background:#00ffcc33;border-color:#00ffcc}
+.ai-switch input:checked+.ai-slider::after{left:20px;background:#00ffcc;box-shadow:0 0 8px #00ffcc88}
+
 @media(max-width:600px){header h1{font-size:1.5rem}.cards{grid-template-columns:1fr}.tool-page{padding:20px 14px}}

@@ -6,12 +6,21 @@
 <div class="output" id="out"></div>
 <button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
 </div>
-<script src="script.js"></script>
+<script src="ai-engine.js"></script>
 <script>
 function toStyle(t,offset){return t.split('').map(c=>{const o=c.charCodeAt(0);if(o>=65&&o<=90)return String.fromCodePoint(o-65+offset);if(o>=97&&o<=122)return String.fromCodePoint(o-97+offset+26);return c}).join('')}
-function make(){
+async function make(){
   const t=document.getElementById('txt').value.trim();
   if(!t){alert('Enter text');return}
+  if(isAIEnabled()){
+    showLoading('out');
+    try{
+      const r=await callAI(`Convert this text into 10 different stylish variations using Unicode fonts, emojis, symbols, stars, hearts, fire etc: "${t}". One per line. No labels or numbering.`);
+      document.getElementById('out').innerText=r.trim();
+    }catch(e){showError('out');localMake(t)}
+  }else{localMake(t)}
+}
+function localMake(t){
   const emojis=['✨','🔥','💫','⚡','🌟','💎','🦋','🌺'];
   const re=[];
   re.push('𝗕𝗼𝗹𝗱: '+toStyle(t,0x1D5D4));

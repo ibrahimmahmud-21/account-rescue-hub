@@ -6,22 +6,24 @@
 <div class="output" id="out"></div>
 <button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
 </div>
-<script src="script.js"></script>
+<script src="ai-engine.js"></script>
 <script>
-function gen(){
+async function gen(){
   const n=document.getElementById('nameIn').value.trim();
   if(!n){alert('Enter a name');return}
+  if(isAIEnabled()){
+    showLoading('out');
+    try{
+      const r=await callAI(`Generate 12 creative, cool gaming/social media nicknames based on the name "${n}". Mix styles: dark, cyber, cool, funny. One per line. No numbering.`);
+      document.getElementById('out').innerText=r.trim();
+    }catch(e){showError('out');localGen(n)}
+  }else{localGen(n)}
+}
+function localGen(n){
   const pre=['Dark','Shadow','Cyber','Neo','Dr.','Mr.','The','King','Ghost','Ice','Fire','Storm','Blaze','Toxic','Epic'];
   const suf=['X','Pro','Boss','Lord','Master','King','Killer','Star','Wolf','Dragon','Ninja','Beast','God','Viper','Legend'];
   const r=[];
-  for(let i=0;i<12;i++){
-    const p=pre[Math.floor(Math.random()*pre.length)];
-    const s=suf[Math.floor(Math.random()*suf.length)];
-    const v=Math.random();
-    if(v<0.33)r.push(p+n);
-    else if(v<0.66)r.push(n+s);
-    else r.push(p+n+s);
-  }
+  for(let i=0;i<12;i++){const p=pre[Math.floor(Math.random()*pre.length)];const s=suf[Math.floor(Math.random()*suf.length)];const v=Math.random();if(v<0.33)r.push(p+n);else if(v<0.66)r.push(n+s);else r.push(p+n+s)}
   document.getElementById('out').innerText=[...new Set(r)].join('\n');
 }
 </script></body></html>

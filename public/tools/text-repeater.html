@@ -9,14 +9,23 @@
 <div class="output" id="out" style="max-height:300px;overflow-y:auto"></div>
 <button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
 </div>
-<script src="script.js"></script>
+<script src="ai-engine.js"></script>
 <script>
-function rep(){
+async function rep(){
   const t=document.getElementById('txt').value;
   if(!t){alert('Enter text');return}
   let c=parseInt(document.getElementById('count').value)||10;
   if(c>5000)c=5000;
   const s=document.getElementById('sep').value.replace('\\n','\n');
-  document.getElementById('out').innerText=Array(c).fill(t).join(s);
+
+  if(isAIEnabled()){
+    showLoading('out');
+    try{
+      const r=await callAI(`Take this text: "${t}" and create 5 creative variations of it (rhyming, stylized, emoji-enhanced, reversed, uppercase art). Then repeat the original ${Math.min(c,20)} times. Keep it fun.`);
+      document.getElementById('out').innerText=r.trim();
+    }catch(e){showError('out');document.getElementById('out').innerText=Array(c).fill(t).join(s)}
+  }else{
+    document.getElementById('out').innerText=Array(c).fill(t).join(s);
+  }
 }
 </script></body></html>
