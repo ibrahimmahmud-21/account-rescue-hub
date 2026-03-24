@@ -516,7 +516,6 @@ const EidPopup = () => {
 /* ── Page ── */
 const Index = () => (
   <>
-    <EidPopup />
     <Navbar />
     <Hero />
     <SectionDivider />
