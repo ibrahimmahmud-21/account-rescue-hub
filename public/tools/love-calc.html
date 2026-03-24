@@ -6,19 +6,31 @@
 <div class="btn-row"><button class="btn" onclick="calc()">Calculate Love</button><button class="btn btn-back" onclick="location.href='index.html'">← Back</button></div>
 <div class="output" id="out" style="text-align:center;font-size:1.1rem"></div>
 </div>
+<script src="ai-engine.js"></script>
 <script>
-function calc(){
+async function calc(){
   const a=document.getElementById('n1').value.trim();
   const b=document.getElementById('n2').value.trim();
   if(!a||!b){alert('Enter both names');return}
   let hash=0;for(const c of(a+b).toLowerCase()){hash=((hash<<5)-hash)+c.charCodeAt(0);hash|=0}
   const pct=Math.abs(hash)%101;
-  let msg;
-  if(pct>90)msg='💖 Perfect match! Made for each other!';
-  else if(pct>70)msg='❤️ Great chemistry! Very compatible!';
-  else if(pct>50)msg='💕 Good vibes! There\'s potential!';
-  else if(pct>30)msg='💛 It could work with effort!';
-  else msg='💔 Not the best match... but never say never!';
-  document.getElementById('out').innerHTML=`<div style="font-size:2.5rem;color:#00ffcc;margin:10px 0">${pct}%</div><div>${a} ❤️ ${b}</div><div style="margin-top:8px;color:#aaa">${msg}</div>`;
+
+  if(isAIEnabled()){
+    showLoading('out');
+    try{
+      const r=await callAI(`Love calculator result: ${a} ❤️ ${b} got ${pct}%. Write a funny, creative, short love compatibility message (2-3 lines) with emojis. Be playful and entertaining.`);
+      document.getElementById('out').innerHTML=`<div style="font-size:2.5rem;color:#00ffcc;margin:10px 0">${pct}%</div><div>${a} ❤️ ${b}</div><div style="margin-top:8px;color:#aaa">${r.trim()}</div>`;
+    }catch(e){showLocal()}
+  }else{showLocal()}
+
+  function showLocal(){
+    let msg;
+    if(pct>90)msg='💖 Perfect match! Made for each other!';
+    else if(pct>70)msg='❤️ Great chemistry! Very compatible!';
+    else if(pct>50)msg='💕 Good vibes! There\'s potential!';
+    else if(pct>30)msg='💛 It could work with effort!';
+    else msg='💔 Not the best match... but never say never!';
+    document.getElementById('out').innerHTML=`<div style="font-size:2.5rem;color:#00ffcc;margin:10px 0">${pct}%</div><div>${a} ❤️ ${b}</div><div style="margin-top:8px;color:#aaa">${msg}</div>`;
+  }
 }
 </script></body></html>

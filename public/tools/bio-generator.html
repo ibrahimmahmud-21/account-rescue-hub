@@ -7,7 +7,7 @@
 <div class="output" id="out"></div>
 <button class="btn btn-copy btn-sm" onclick="copyText('out')" style="margin-top:8px">Copy</button>
 </div>
-<script src="script.js"></script>
+<script src="ai-engine.js"></script>
 <script>
 const bios={
 Cool:["🔥 Born to stand out","⚡ Living my best life","🌟 Limited edition","💎 Rare breed","🎯 Focus on the goal","🖤 Silent but deadly","🏆 Winner mentality","👑 King of my world"],
@@ -16,5 +16,16 @@ Love:["❤️ Hopeless romantic","💕 Love is everything","🌹 Taken & gratefu
 Funny:["🍕 Running on pizza & Wi-Fi","😂 Professional overthinker","🛋️ Couch potato champion","🤷 I put the 'pro' in procrastinate","🎮 Gaming > Adulting","🤪 Weird & proud","😴 Sleeping is my cardio","🧠 Big brain, zero motivation"],
 Motivational:["🚀 Dream big, work hard","🌅 New day, new chance","💡 Be the change","📈 Growth mindset","🎯 Stay focused, stay humble","⭐ Your only limit is you","🔑 Success is a journey","🏔️ Keep climbing"]
 };
-function gen(){const c=document.getElementById('cat').value;const a=bios[c];document.getElementById('out').innerText=a[Math.floor(Math.random()*a.length)]}
+async function gen(){
+  const c=document.getElementById('cat').value;
+  if(isAIEnabled()){
+    showLoading('out');
+    try{
+      const r=await callAI(`Generate 3 unique, creative, short social media bios for the "${c}" category. Use emojis. One per line. No numbering.`);
+      document.getElementById('out').innerText=r.trim();
+    }catch(e){showError('out');const a=bios[c];document.getElementById('out').innerText=a[Math.floor(Math.random()*a.length)]}
+  }else{
+    const a=bios[c];document.getElementById('out').innerText=a[Math.floor(Math.random()*a.length)];
+  }
+}
 </script></body></html>

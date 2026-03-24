@@ -10,6 +10,7 @@
 <div style="color:#888;font-size:.8rem" id="numDisplay"></div>
 <div class="caller" id="callerDisplay"></div>
 <div class="status" id="callStatus">Incoming Call...</div>
+<div id="aiMsg" style="color:#00ffcc;font-size:.8rem;margin-bottom:10px;min-height:20px"></div>
 <div class="call-btns">
 <button class="call-btn reject" onclick="reject()">✕</button>
 <button class="call-btn accept" onclick="accept()">✓</button>
@@ -17,16 +18,24 @@
 </div>
 </div>
 </div>
+<script src="ai-engine.js"></script>
 <script>
 let timer;
-function showCall(){
+async function showCall(){
   const c=document.getElementById('caller').value.trim()||'Unknown';
   const num=document.getElementById('number').value.trim()||'';
   document.getElementById('callerDisplay').textContent=c;
   document.getElementById('numDisplay').textContent=num;
   document.getElementById('callStatus').textContent='Incoming Call...';
+  document.getElementById('aiMsg').textContent='';
   document.getElementById('callUI').style.display='block';
   if(timer)clearInterval(timer);
+  if(isAIEnabled()){
+    try{
+      const r=await callAI(`Someone named "${c}" is calling. Write a funny one-liner caller ID note (like a phone would show). Max 15 words. Be witty.`);
+      document.getElementById('aiMsg').textContent=r.trim();
+    }catch(e){}
+  }
 }
 function accept(){
   let s=0;

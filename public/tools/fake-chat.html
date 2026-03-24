@@ -5,9 +5,15 @@
 <label>Your Name</label><input type="text" id="receiver" placeholder="e.g. Ibrahim">
 <label>Message (sender)</label><input type="text" id="msgS" placeholder="Hey, how are you?">
 <label>Reply (you)</label><input type="text" id="msgR" placeholder="I'm good!">
-<div class="btn-row"><button class="btn" onclick="addChat()">Add Messages</button><button class="btn btn-copy" onclick="clearChat()">Clear</button><button class="btn btn-back" onclick="location.href='index.html'">← Back</button></div>
+<div class="btn-row">
+  <button class="btn" onclick="addChat()">Add Messages</button>
+  <button class="btn" onclick="suggestAI()" id="suggestBtn" style="background:#222;color:#00ffcc;border:1px solid #00ffcc44">🤖 AI Suggest</button>
+  <button class="btn btn-copy" onclick="clearChat()">Clear</button>
+  <button class="btn btn-back" onclick="location.href='index.html'">← Back</button>
+</div>
 <div class="chat-box" id="chatBox"></div>
 </div>
+<script src="ai-engine.js"></script>
 <script>
 function addChat(){
   const s=document.getElementById('sender').value.trim()||'Sender';
@@ -21,4 +27,24 @@ function addChat(){
   box.scrollTop=box.scrollHeight;
 }
 function clearChat(){document.getElementById('chatBox').innerHTML=''}
+async function suggestAI(){
+  if(!isAIEnabled()){alert('Turn on AI toggle first!');return}
+  const s=document.getElementById('sender').value.trim()||'Friend';
+  const r=document.getElementById('receiver').value.trim()||'You';
+  const existing=document.getElementById('chatBox').innerText;
+  document.getElementById('suggestBtn').textContent='⏳ Thinking...';
+  try{
+    const res=await callAI(`Generate a short funny chat conversation (4 messages) between "${s}" and "${r}". Format each line as: Name: message. Context: ${existing||'starting a new chat'}`);
+    const lines=res.trim().split('\n').filter(l=>l.trim());
+    const box=document.getElementById('chatBox');
+    lines.forEach(l=>{
+      const isSender=l.toLowerCase().startsWith(s.toLowerCase());
+      const msg=l.replace(/^[^:]+:\s*/,'');
+      const name=isSender?s:r;
+      box.innerHTML+=`<div class="chat-msg ${isSender?'recv':'sent'}"><div class="name">${name}</div>${msg}</div>`;
+    });
+    box.scrollTop=box.scrollHeight;
+  }catch(e){alert('AI error, try again')}
+  document.getElementById('suggestBtn').textContent='🤖 AI Suggest';
+}
 </script></body></html>
