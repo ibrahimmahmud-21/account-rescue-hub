@@ -472,46 +472,7 @@ const Footer = () => (
   </footer>
 );
 
-/* ── Eid Popup ── */
-const EID_EXPIRY = (() => {
-  const d = new Date();
-  d.setDate(d.getDate() + 1);
-  d.setHours(23, 59, 59, 999);
-  return d.getTime();
-})();
 
-const EidPopup = () => {
-  const [show, setShow] = useState(false);
-
-  useEffect(() => {
-    if (Date.now() > EID_EXPIRY) return;
-    if (localStorage.getItem("eid_closed") === "1") return;
-    setShow(true);
-  }, []);
-
-  const close = () => {
-    setShow(false);
-    localStorage.setItem("eid_closed", "1");
-  };
-
-  if (!show) return null;
-
-  return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 animate-fade-in" style={{ background: 'hsl(224 71% 3% / 0.85)', backdropFilter: 'blur(12px)' }}>
-      <div className="relative max-w-sm w-full rounded-2xl overflow-hidden" style={{ border: '1px solid hsl(168 100% 50% / 0.25)', boxShadow: '0 0 40px hsl(168 100% 50% / 0.15), 0 0 80px hsl(168 100% 50% / 0.05)' }}>
-        <button onClick={close} className="absolute top-3 right-3 z-10 w-8 h-8 rounded-full bg-background/80 border border-primary/20 flex items-center justify-center text-foreground hover:border-primary/50 transition-all">
-          <X size={16} />
-        </button>
-        <img src={eidImage} alt="Eid Mubarak" className="w-full h-auto" />
-        <div className="p-4 bg-background/90 text-center">
-          <button onClick={close} className="btn-neon !text-[10px] !py-2.5 !px-8">
-            Enter Website
-          </button>
-        </div>
-      </div>
-    </div>
-  );
-};
 
 /* ── Page ── */
 const Index = () => (
