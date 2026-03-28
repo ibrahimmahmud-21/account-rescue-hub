@@ -434,8 +434,7 @@ const Index = () => (
     <FAQ />
     <SectionDivider />
     <Contact />
-    <SectionDivider />
-    <ToolsSection />
+    <Footer />
     <Footer />
   </>
 );
