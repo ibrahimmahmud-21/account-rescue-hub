@@ -119,16 +119,7 @@ const Navbar = () => {
   );
 };
 /* ── Hero ── */
-const sliderImages = [slider1, slider2, slider3];
-
 const Hero = () => {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrent((p) => (p + 1) % sliderImages.length), 2500);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section id="home" className="animated-bg relative overflow-hidden scan-overlay">
       <div className="cyber-grid-bg absolute inset-0" />
@@ -165,9 +156,7 @@ const Hero = () => {
           <div className="flex justify-center relative order-2">
             <div className="absolute w-60 h-60 md:w-[28rem] md:h-[28rem] rounded-full blur-[120px] md:blur-[160px] opacity-20" style={{ background: 'hsl(168 100% 50%)' }} />
             <div className="profile-neon w-48 h-48 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] relative z-10" style={{ animation: 'pulse-glow 3s ease-in-out infinite, float 6s ease-in-out infinite' }}>
-              {sliderImages.map((src, i) => (
-                <img key={i} src={src} alt={`Slide ${i + 1}`} className="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-700" style={{ opacity: i === current ? 1 : 0 }} />
-              ))}
+              <img src={profileImg} alt="Ibrahim Mahmud" className="rounded-full w-full h-full object-cover" />
             </div>
           </div>
         </div>
