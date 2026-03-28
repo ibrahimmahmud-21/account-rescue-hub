@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef } from "react";
-import { ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, User, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle, ChevronDown, ChevronUp, Menu, X, ExternalLink, Flame } from "lucide-react";
+import { ArrowDown, Lock, ShieldAlert, Unlock, ShieldCheck, FileText, Ban, DollarSign, Scale, TrendingUp, Film, CreditCard, Building2, Megaphone, BadgeCheck, Smartphone, BarChart3, Mail, Facebook, Search, Wrench, Zap, Shield, Target, Clock, LockKeyhole, HelpCircle, ChevronDown, ChevronUp, Menu, X, Send } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import slider1 from "@/assets/slider1.jpg";
-import slider2 from "@/assets/slider2.jpg";
-import slider3 from "@/assets/slider3.jpg";
-
+import profileImg from "@/assets/profile.png";
 
 const FB = "https://www.facebook.com/share/1EDcLHbrgn/";
 
@@ -122,16 +119,7 @@ const Navbar = () => {
   );
 };
 /* ── Hero ── */
-const sliderImages = [slider1, slider2, slider3];
-
 const Hero = () => {
-  const [current, setCurrent] = useState(0);
-
-  useEffect(() => {
-    const timer = setInterval(() => setCurrent((p) => (p + 1) % sliderImages.length), 2500);
-    return () => clearInterval(timer);
-  }, []);
-
   return (
     <section id="home" className="animated-bg relative overflow-hidden scan-overlay">
       <div className="cyber-grid-bg absolute inset-0" />
@@ -168,9 +156,7 @@ const Hero = () => {
           <div className="flex justify-center relative order-2">
             <div className="absolute w-60 h-60 md:w-[28rem] md:h-[28rem] rounded-full blur-[120px] md:blur-[160px] opacity-20" style={{ background: 'hsl(168 100% 50%)' }} />
             <div className="profile-neon w-48 h-48 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] relative z-10" style={{ animation: 'pulse-glow 3s ease-in-out infinite, float 6s ease-in-out infinite' }}>
-              {sliderImages.map((src, i) => (
-                <img key={i} src={src} alt={`Slide ${i + 1}`} className="absolute inset-0 rounded-full w-full h-full object-cover transition-opacity duration-700" style={{ opacity: i === current ? 1 : 0 }} />
-              ))}
+              <img src={profileImg} alt="Ibrahim Mahmud" className="rounded-full w-full h-full object-cover" />
             </div>
           </div>
         </div>
@@ -366,50 +352,62 @@ const FAQ = () => (
 );
 
 /* ── Contact ── */
-const contactItems = [
-  { label: "Name", value: "Ibrahim Mahmud", icon: User },
-  { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
-  { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
-];
-
 const Contact = () => (
-  <section id="contact" className="py-16 md:py-36 relative overflow-hidden bg-background">
+  <section id="contact" className="relative overflow-hidden bg-background" style={{ padding: '40px 20px' }}>
     <div className="cyber-grid-bg absolute inset-0 opacity-30" />
-    <CyberParticles />
-    <div className="container mx-auto px-4 max-w-2xl relative z-10">
+    <div className="container mx-auto max-w-xl relative z-10">
       <FadeIn>
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-14">
+        <div className="text-center space-y-1 mb-6">
           <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Contact</p>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
+          <h2 className="text-xl md:text-2xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
         </div>
       </FadeIn>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-        {contactItems.map(({ label, value, href, icon: Icon }) => (
-          <FadeIn key={label}>
-            <div className="glass-card group hover:-translate-y-1 transition-all duration-300 !p-4 md:!p-5" style={{ borderColor: 'hsl(168 100% 50% / 0.12)' }}>
-              <div className="flex sm:flex-col items-center sm:items-center gap-3 sm:gap-2 sm:text-center">
-                <div className="icon-glow !w-10 !h-10 shrink-0 group-hover:!shadow-[0_0_20px_hsl(168_100%_50%_/_0.3)]">
-                  <Icon size={18} className="text-primary" />
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-muted-foreground text-[10px] uppercase tracking-wider font-cyber">{label}</span>
-                  {href ? (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs md:text-sm font-semibold break-all">{value}</a>
-                  ) : (
-                    <span className="text-foreground text-xs md:text-sm font-semibold">{value}</span>
-                  )}
-                </div>
-              </div>
+      <div className="flex flex-col gap-2.5 max-w-sm mx-auto">
+        {/* Email */}
+        <FadeIn>
+          <a href="mailto:ibmm923@gmail.com" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
+            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
+              <Mail size={18} className="text-primary" />
             </div>
-          </FadeIn>
-        ))}
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Email</span>
+              <span className="text-primary text-xs font-semibold">ibmm923@gmail.com</span>
+            </div>
+          </a>
+        </FadeIn>
+
+        {/* Facebook */}
+        <FadeIn>
+          <a href={FB} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
+            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
+              <Facebook size={18} className="text-primary" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Facebook</span>
+              <span className="text-primary text-xs font-semibold">Facebook Profile</span>
+            </div>
+          </a>
+        </FadeIn>
+
+        {/* Telegram */}
+        <FadeIn>
+          <a href="https://t.me/ibrahimbd10" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
+            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
+              <Send size={18} className="text-primary" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Telegram</span>
+              <span className="text-primary text-xs font-semibold">Message on Telegram</span>
+            </div>
+          </a>
+        </FadeIn>
       </div>
 
       <FadeIn>
-        <div className="flex justify-center mt-8 md:mt-12">
-          <a href="#contact" className="btn-neon !text-[10px] !px-8 !py-3.5 md:!px-12 md:!py-4">
-            <ShieldCheck size={16} /> Start Recovery Now
+        <div className="flex justify-center mt-5">
+          <a href="mailto:ibmm923@gmail.com" className="btn-neon !text-[10px] !px-6 !py-2.5" style={{ height: '42px' }}>
+            <ShieldCheck size={14} /> Start Recovery Now
           </a>
         </div>
       </FadeIn>
@@ -417,46 +415,8 @@ const Contact = () => (
   </section>
 );
 
-/* ── Tools Section ── */
-const ToolsSection = () => (
-  <section className="py-16 md:py-28 relative overflow-hidden bg-background">
-    <div className="cyber-grid-bg absolute inset-0 opacity-20" />
-    <CyberParticles />
-    <div className="container mx-auto px-4 max-w-2xl relative z-10">
-      <FadeIn>
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-12">
-          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Tools</p>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">
-            <span className="gradient-text">🔥 Tools Hub</span>
-          </h2>
-          <p className="text-muted-foreground text-xs md:text-sm max-w-md mx-auto">Fun & useful online tools — stylish text, fake chat, bio generator and more.</p>
-        </div>
-      </FadeIn>
 
-      <FadeIn>
-        <a
-          href="/tools/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group block cyber-card hover:!border-primary/50 transition-all duration-500 !p-6 md:!p-8"
-        >
-          <div className="flex flex-col items-center gap-4 text-center">
-            <div className="icon-glow !w-16 !h-16 group-hover:!shadow-[0_0_30px_hsl(168_100%_50%_/_0.4)] transition-all duration-500">
-              <Flame size={28} className="text-primary" />
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-lg md:text-xl font-bold text-foreground heading-cyber">Try My Tools</h3>
-              <p className="text-muted-foreground text-xs md:text-sm">10+ free online tools — Name Styler, Fake Chat, Bio Generator, Love Calculator & more!</p>
-            </div>
-            <span className="btn-neon !text-[10px] !px-8 !py-3 md:!px-10 md:!py-3.5 group-hover:scale-105 transition-transform">
-              <ExternalLink size={14} /> Open Tools Hub
-            </span>
-          </div>
-        </a>
-      </FadeIn>
-    </div>
-  </section>
-);
+
 /* ── Footer ── */
 const Footer = () => (
   <footer className="border-t border-primary/10 py-8 md:py-14 bg-background">
@@ -471,8 +431,6 @@ const Footer = () => (
     </div>
   </footer>
 );
-
-
 
 /* ── Page ── */
 const Index = () => (
@@ -489,8 +447,6 @@ const Index = () => (
     <FAQ />
     <SectionDivider />
     <Contact />
-    <SectionDivider />
-    <ToolsSection />
     <Footer />
   </>
 );
