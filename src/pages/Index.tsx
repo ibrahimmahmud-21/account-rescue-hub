@@ -352,50 +352,62 @@ const FAQ = () => (
 );
 
 /* ── Contact ── */
-const contactItems = [
-  { label: "Name", value: "Ibrahim Mahmud", icon: User },
-  { label: "Email", value: "ibmm923@gmail.com", href: "mailto:ibmm923@gmail.com", icon: Mail },
-  { label: "Facebook Profile", value: "Facebook Profile", href: FB, icon: Facebook },
-];
-
 const Contact = () => (
-  <section id="contact" className="py-16 md:py-36 relative overflow-hidden bg-background">
+  <section id="contact" className="relative overflow-hidden bg-background" style={{ padding: '40px 20px' }}>
     <div className="cyber-grid-bg absolute inset-0 opacity-30" />
-    <CyberParticles />
-    <div className="container mx-auto px-4 max-w-2xl relative z-10">
+    <div className="container mx-auto max-w-xl relative z-10">
       <FadeIn>
-        <div className="text-center space-y-2 md:space-y-4 mb-8 md:mb-14">
+        <div className="text-center space-y-1 mb-6">
           <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Contact</p>
-          <h2 className="text-2xl md:text-4xl lg:text-5xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
+          <h2 className="text-xl md:text-2xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
         </div>
       </FadeIn>
 
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4">
-        {contactItems.map(({ label, value, href, icon: Icon }) => (
-          <FadeIn key={label}>
-            <div className="glass-card group hover:-translate-y-1 transition-all duration-300 !p-4 md:!p-5" style={{ borderColor: 'hsl(168 100% 50% / 0.12)' }}>
-              <div className="flex sm:flex-col items-center sm:items-center gap-3 sm:gap-2 sm:text-center">
-                <div className="icon-glow !w-10 !h-10 shrink-0 group-hover:!shadow-[0_0_20px_hsl(168_100%_50%_/_0.3)]">
-                  <Icon size={18} className="text-primary" />
-                </div>
-                <div className="flex flex-col gap-0.5">
-                  <span className="text-muted-foreground text-[10px] uppercase tracking-wider font-cyber">{label}</span>
-                  {href ? (
-                    <a href={href} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline text-xs md:text-sm font-semibold break-all">{value}</a>
-                  ) : (
-                    <span className="text-foreground text-xs md:text-sm font-semibold">{value}</span>
-                  )}
-                </div>
-              </div>
+      <div className="flex flex-col gap-2.5 max-w-sm mx-auto">
+        {/* Email */}
+        <FadeIn>
+          <a href="mailto:ibmm923@gmail.com" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
+            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
+              <Mail size={18} className="text-primary" />
             </div>
-          </FadeIn>
-        ))}
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Email</span>
+              <span className="text-primary text-xs font-semibold">ibmm923@gmail.com</span>
+            </div>
+          </a>
+        </FadeIn>
+
+        {/* Facebook */}
+        <FadeIn>
+          <a href={FB} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
+            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
+              <Facebook size={18} className="text-primary" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Facebook</span>
+              <span className="text-primary text-xs font-semibold">Facebook Profile</span>
+            </div>
+          </a>
+        </FadeIn>
+
+        {/* Telegram */}
+        <FadeIn>
+          <a href="https://t.me/ibrahimbd10" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
+            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
+              <Send size={18} className="text-primary" />
+            </div>
+            <div className="flex flex-col">
+              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Telegram</span>
+              <span className="text-primary text-xs font-semibold">Message on Telegram</span>
+            </div>
+          </a>
+        </FadeIn>
       </div>
 
       <FadeIn>
-        <div className="flex justify-center mt-8 md:mt-12">
-          <a href="#contact" className="btn-neon !text-[10px] !px-8 !py-3.5 md:!px-12 md:!py-4">
-            <ShieldCheck size={16} /> Start Recovery Now
+        <div className="flex justify-center mt-5">
+          <a href="mailto:ibmm923@gmail.com" className="btn-neon !text-[10px] !px-6 !py-2.5" style={{ height: '42px' }}>
+            <ShieldCheck size={14} /> Start Recovery Now
           </a>
         </div>
       </FadeIn>
