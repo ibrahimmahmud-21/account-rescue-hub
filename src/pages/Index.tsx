@@ -417,7 +417,20 @@ const Contact = () => (
 
 
 
-
+/* ── Footer ── */
+const Footer = () => (
+  <footer className="border-t border-primary/10 py-8 md:py-14 bg-background">
+    <div className="container mx-auto px-4 text-center space-y-3 md:space-y-5">
+      <p className="text-foreground font-cyber font-bold text-sm tracking-[0.15em] uppercase neon-text">Ibrahim Mahmud</p>
+      <p className="text-muted-foreground text-xs">Social Media Account Recovery Service</p>
+      <div className="flex justify-center gap-6 text-xs">
+        <a href="mailto:ibmm923@gmail.com" className="footer-link">Email</a>
+        <a href={FB} target="_blank" rel="noopener noreferrer" className="footer-link">Facebook</a>
+      </div>
+      <p className="text-muted-foreground/30 text-[10px] pt-2 font-cyber">© 2026 Ibrahim Mahmud</p>
+    </div>
+  </footer>
+);
 
 /* ── Page ── */
 const Index = () => (
@@ -434,7 +447,6 @@ const Index = () => (
     <FAQ />
     <SectionDivider />
     <Contact />
-    <Footer />
     <Footer />
   </>
 );
