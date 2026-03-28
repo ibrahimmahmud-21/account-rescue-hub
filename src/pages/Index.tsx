@@ -352,68 +352,114 @@ const FAQ = () => (
 );
 
 /* ── Contact ── */
-const Contact = () => (
-  <section id="contact" className="relative overflow-hidden bg-background" style={{ padding: '40px 20px' }}>
-    <div className="cyber-grid-bg absolute inset-0 opacity-30" />
-    <div className="container mx-auto max-w-xl relative z-10">
-      <FadeIn>
-        <div className="text-center space-y-1 mb-6">
-          <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Contact</p>
-          <h2 className="text-xl md:text-2xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
+const Contact = () => {
+  const [formState, setFormState] = useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setFormState('loading');
+    const form = e.currentTarget;
+    try {
+      const res = await fetch('https://formspree.io/f/xwvwvklr', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' },
+      });
+      if (res.ok) {
+        setFormState('success');
+        form.reset();
+      } else {
+        setFormState('error');
+      }
+    } catch {
+      setFormState('error');
+    }
+  };
+
+  return (
+    <section id="contact" className="relative overflow-hidden bg-background" style={{ padding: '40px 20px' }}>
+      <div className="cyber-grid-bg absolute inset-0 opacity-30" />
+      <div className="container mx-auto max-w-md relative z-10">
+        <FadeIn>
+          <div className="text-center space-y-1 mb-6">
+            <p className="text-primary font-cyber font-semibold text-[10px] uppercase tracking-[0.25em]">// Contact</p>
+            <h2 className="text-xl md:text-2xl font-extrabold text-foreground heading-cyber tracking-tight">Get In Touch</h2>
+          </div>
+        </FadeIn>
+
+        <FadeIn>
+          <div className="rounded-xl border border-primary/10 bg-secondary/30 backdrop-blur-sm" style={{ padding: '20px 24px' }}>
+            {formState === 'success' ? (
+              <div className="text-center py-6 space-y-2">
+                <div className="w-12 h-12 rounded-full bg-primary/15 border border-primary/30 flex items-center justify-center mx-auto">
+                  <ShieldCheck size={22} className="text-primary" />
+                </div>
+                <p className="text-foreground font-semibold text-sm heading-cyber">Message Sent!</p>
+                <p className="text-muted-foreground text-xs">I'll get back to you soon.</p>
+                <button onClick={() => setFormState('idle')} className="text-primary text-xs underline underline-offset-2 mt-2">Send another</button>
+              </div>
+            ) : (
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                <input
+                  type="text"
+                  name="name"
+                  required
+                  placeholder="Your Name"
+                  className="w-full rounded-lg border border-primary/10 bg-background/60 text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:shadow-[0_0_8px_hsl(168_100%_50%_/_0.1)] transition-all duration-200"
+                  style={{ padding: '10px 14px' }}
+                />
+                <input
+                  type="email"
+                  name="email"
+                  required
+                  placeholder="Your Email"
+                  className="w-full rounded-lg border border-primary/10 bg-background/60 text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:shadow-[0_0_8px_hsl(168_100%_50%_/_0.1)] transition-all duration-200"
+                  style={{ padding: '10px 14px' }}
+                />
+                <textarea
+                  name="message"
+                  required
+                  rows={4}
+                  placeholder="Your Message"
+                  className="w-full rounded-lg border border-primary/10 bg-background/60 text-foreground text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:border-primary/40 focus:shadow-[0_0_8px_hsl(168_100%_50%_/_0.1)] transition-all duration-200 resize-none"
+                  style={{ padding: '10px 14px' }}
+                />
+                {formState === 'error' && (
+                  <p className="text-destructive text-xs text-center">Something went wrong. Please try again.</p>
+                )}
+                <button
+                  type="submit"
+                  disabled={formState === 'loading'}
+                  className="btn-neon w-full !text-[11px] !py-2.5 justify-center disabled:opacity-60 disabled:pointer-events-none"
+                  style={{ height: '44px' }}
+                >
+                  {formState === 'loading' ? (
+                    <span className="flex items-center gap-2"><span className="w-4 h-4 border-2 border-primary-foreground/40 border-t-primary-foreground rounded-full animate-spin" /> Sending...</span>
+                  ) : (
+                    <><Send size={14} /> Send Message</>
+                  )}
+                </button>
+              </form>
+            )}
+          </div>
+        </FadeIn>
+
+        {/* Social links */}
+        <div className="flex justify-center gap-3 mt-4">
+          <a href="mailto:ibmm923@gmail.com" className="w-9 h-9 rounded-md bg-secondary/50 border border-primary/10 flex items-center justify-center hover:border-primary/30 hover:shadow-[0_0_10px_hsl(168_100%_50%_/_0.15)] transition-all duration-200">
+            <Mail size={16} className="text-primary" />
+          </a>
+          <a href={FB} target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-md bg-secondary/50 border border-primary/10 flex items-center justify-center hover:border-primary/30 hover:shadow-[0_0_10px_hsl(168_100%_50%_/_0.15)] transition-all duration-200">
+            <Facebook size={16} className="text-primary" />
+          </a>
+          <a href="https://t.me/ibrahimbd10" target="_blank" rel="noopener noreferrer" className="w-9 h-9 rounded-md bg-secondary/50 border border-primary/10 flex items-center justify-center hover:border-primary/30 hover:shadow-[0_0_10px_hsl(168_100%_50%_/_0.15)] transition-all duration-200">
+            <Send size={16} className="text-primary" />
+          </a>
         </div>
-      </FadeIn>
-
-      <div className="flex flex-col gap-2.5 max-w-sm mx-auto">
-        {/* Email */}
-        <FadeIn>
-          <a href="mailto:ibmm923@gmail.com" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
-            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
-              <Mail size={18} className="text-primary" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Email</span>
-              <span className="text-primary text-xs font-semibold">ibmm923@gmail.com</span>
-            </div>
-          </a>
-        </FadeIn>
-
-        {/* Facebook */}
-        <FadeIn>
-          <a href={FB} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
-            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
-              <Facebook size={18} className="text-primary" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Facebook</span>
-              <span className="text-primary text-xs font-semibold">Facebook Profile</span>
-            </div>
-          </a>
-        </FadeIn>
-
-        {/* Telegram */}
-        <FadeIn>
-          <a href="https://t.me/ibrahimbd10" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 rounded-lg border border-primary/10 bg-secondary/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300" style={{ padding: '12px 16px' }}>
-            <div className="w-9 h-9 rounded-md bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0 group-hover:shadow-[0_0_12px_hsl(168_100%_50%_/_0.2)] transition-shadow">
-              <Send size={18} className="text-primary" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-muted-foreground text-[9px] uppercase tracking-wider font-cyber">Telegram</span>
-              <span className="text-primary text-xs font-semibold">Message on Telegram</span>
-            </div>
-          </a>
-        </FadeIn>
       </div>
-
-      <FadeIn>
-        <div className="flex justify-center mt-5">
-          <a href="mailto:ibmm923@gmail.com" className="btn-neon !text-[10px] !px-6 !py-2.5" style={{ height: '42px' }}>
-            <ShieldCheck size={14} /> Start Recovery Now
-          </a>
-        </div>
-      </FadeIn>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 
 
